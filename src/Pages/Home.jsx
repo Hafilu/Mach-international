@@ -382,19 +382,19 @@ const Home = () => {
       </section>
 
       <section className="py-24 bg-gray-100">
-        <div className="w-[80%] mx-auto">
+        <div className="w-[85%] mx-auto">
           <h2 className=" text-5xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
             Our Core Values
           </h2>
 
-          <div className="w-[60%] mx-auto">
+          <div className="w-[90%] mx-auto">
             <img
               src={core}
               alt=""
               className="w-full h-[400px]  object-cover rounded-lg shadow-lg"
             />
           </div>
-          <div className="flex flex-wrap gap-6 justify-center pt-16 px-6">
+          <div className="flex flex-wrap gap-6 justify-center pt-16  ">
             {Ourvalues.map((value, index) => (
               <div
                 key={index}
