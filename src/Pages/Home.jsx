@@ -219,41 +219,42 @@ const Home = () => {
             </div>
 
             {/* Right Section */}
-            <div className="md:w-1/2">
-              <div className="w-[80%] ml-auto">
+            <div className="md:w-1/2 ">
+              <div className="w-[80%] ml-auto relative">
                 <img
-                  src={about}
+                  src="https://img.freepik.com/free-photo/construction-site-silhouettes_1127-3253.jpg?t=st=1733738896~exp=1733742496~hmac=ecb0df6018f757857eb00a4fc20443ef8b32a9ebb27e2208a4eb730bf6493c66&w=900"
                   alt="Business Representation"
-                  className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+                  className="w-full h-[600px] object-cover rounded-lg shadow-lg "
                 />
-                <div className="mt-16  font-figtree  grid grid-cols-6 md:grid-cols-2   gap-10   text-center">
+                
+                <div className="mt-12  font-figtree w-[80%]  grid grid-cols-6 md:grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
                   {/* Statistic Item */}
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2  text-gray-800">
+                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
+                    <h3 className="text-4xl font-bold mb-2  text-white">
                       <CountUp end={120} duration={2} enableScrollSpy />+
                     </h3>
-                    <p className="text-gray-600 text-lg">Clients</p>
+                    <p className="text-white text-lg">Clients</p>
                   </div>
                   {/* Statistic Item */}
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2 text-gray-800">
+                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
+                    <h3 className="text-4xl font-bold mb-2 text-white">
                       <CountUp end={50} duration={2} enableScrollSpy />+
                     </h3>
-                    <p className="text-gray-600 text-lg">Partners</p>
+                    <p className="text-white text-lg">Partners</p>
                   </div>
                   {/* Statistic Item */}
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2 text-gray-800">
+                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
+                    <h3 className="text-4xl font-bold mb-2 text-white">
                       <CountUp end={300} duration={2} enableScrollSpy />%
                     </h3>
-                    <p className="text-gray-600 text-lg">Growth</p>
+                    <p className="text-white text-lg">Growth</p>
                   </div>
                   {/* Statistic Item */}
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2 text-gray-800">
+                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
+                    <h3 className="text-4xl font-bold mb-2 text-white">
                       <CountUp end={15} duration={2} enableScrollSpy />+
                     </h3>
-                    <p className="text-gray-600 text-lg">Awards</p>
+                    <p className="text-white text-lg">Awards</p>
                   </div>
                 </div>
               </div>
@@ -263,7 +264,7 @@ const Home = () => {
       </section>
 
       <div
-        className="pb-14  pt-20 relative"
+        className="py-24 relative"
         style={{
           backgroundImage: `url(${missionbg})`,
           backgroundSize: "cover",
@@ -288,13 +289,12 @@ const Home = () => {
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                           fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                          
                         </p>
                         <p className="mt-2 mb-8 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
-                          fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                           
                         </p>
 
                         <Button text={"READ MORE"} to={"/"} />
@@ -312,13 +312,12 @@ const Home = () => {
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                           fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                           
                         </p>
                         <p className="mt-2 mb-8 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
-                          fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                         
                         </p>
 
                         <Button text={"READ MORE"} to={"/"} />
@@ -335,13 +334,12 @@ const Home = () => {
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                           fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                          
                         </p>
                         <p className="mt-2 mb-8 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
-                          fugit deserunt harum quis impedit est, voluptatibus
-                          in? Facilis obcaecati rem hic asperiores temporibus?
+                           
                         </p>
 
                         <Button text={"READ MORE"} to={"/"} />
