@@ -25,3 +25,8 @@
     color: #104cba; /* Arrow color */
     transform: translateY(-50%);
 }
+
+
+.slick-prev, .slick-next {
+    display: none !important;
+}

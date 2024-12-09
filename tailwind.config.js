@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        figtree: ['Figtree', 'sans-serif'],  
-        playfair: ['Playfair Display', 'serif'],  
+        figtree: ["Yantramanav", "sans-serif"],  
+        playfair: ["Yantramanav", "sans-serif"],  
       },
     },
   },

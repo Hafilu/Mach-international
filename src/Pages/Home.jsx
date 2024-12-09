@@ -2,10 +2,13 @@ import React from "react";
 import banner1 from "../assets/banner1.jpg";
 import banner2 from "../assets/banner2.jpg";
 import banner3 from "../assets/banner3.jpg";
-import mission from "../assets/mission.jpg";
-import vision from "../assets/vision.jpg";
+import missionbg from "../assets/missionbg.jpg";
+import insta from "../assets/insta.png";
+import linkdin from "../assets/linkdin.png";
+import x from "../assets/twitter.png";
+import fb from "../assets/fb.png";
 import core from "../assets/core.jpg";
-import values from "../assets/values.jpg";
+import corebg from "../assets/business.jpg"
 import about from "../assets/about.jpg";
 import stand from "../assets/standout.jpg";
 import inspection from "../assets/inspection.jpg";
@@ -19,6 +22,9 @@ import ServiceCard from "../Components/ServiceCard";
 import ContactSection from "../Components/Contact";
 import AddressCard from "../Components/AddressCard";
 import Footer from "../Components/Footer";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const banners = [
   {
@@ -48,20 +54,14 @@ const banners = [
 ];
 
 const Ourvalues = [
-  "Customer Service Excellence",
-  "Community and Environment",
-  "Alignment and Accountability",
-  "Teamwork",
-  "Balance",
-  "Integrity",
-  "Passion for Results",
-  "Respect",
-  "Long-Term View",
-  "Innovation",
-  "Growth",
-  "Accountability",
+  { title: "Customer Service Excellence", text: "Duis aute irure dolor in." },
+  { title: "Sustainability", text: "Duis aute irure dolor in." },
+  { title: "Empowerment", text: "Duis aute irure dolor in." },
+  { title: "Integrity", text: "Duis aute irure dolor in." },
+ 
+  { title: "Accountability", text: "Duis aute irure dolor in." },
+  { title: "Transparency", text: "Duis aute irure dolor in." },
 ];
-
 const addresses = [
   {
     flag: "https://flagcdn.com/ca.svg", // Canada Flag URL
@@ -127,6 +127,17 @@ const Home = () => {
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
   });
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div>
       <div className="carousel-wrapper relative">
@@ -188,7 +199,7 @@ const Home = () => {
               <p className="my-8  text-5xl font-bold font-playfair">
                 We Provide Exceptionally Reliable Technical Services & Solution.
               </p>
-              <p className="font-figtree text-lg">
+              <p className="font-figtree text-gray-800 text-lg">
                 Mach International is a fast-growing customercentric technical
                 services and solutions provider, worldwide. We provide
                 exceptionally reliable technical services and solutions for
@@ -200,7 +211,7 @@ const Home = () => {
                 associated industries.
               </p>
 
-              <ul className="font-figtree mt-10">
+              <ul className="font-figtree text-gray-800 mt-10">
                 <li>Distinct &amp; Unique Operations Methodology</li>
                 <li>Efficient &amp; Cost Effective</li>
                 <li>100% Client Satisfaction</li>
@@ -251,74 +262,132 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="w-[80%] mx-auto pb-24 pt-20 ">
-        <h2 className=" text-5xl font-bold font-playfair text-center mb-16">
-          Our Company Culture
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3  ">
-          {/* Card 1 - Mission */}
-          <div className="flex flex-col items-center  ">
-            <div className="   p-8 text-justify bg-red-900">
-              <h3 className="text-3xl font-bold font-playfair text-white   mt-8">
-                Our Mission
-              </h3>
-              <p className="text-white py-6 text-lg font-figtree">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                consequuntur ut enim soluta, placeat animi vel pariatur
-                delectus, labore natus illum id eligendi magni dolorem
-                distinctio, laudantium beatae temporibus quas!
-              </p>
-            </div>
-            <div className="w-full  ">
-              <img
-                src={mission}
-                alt="Mission Illustration"
-                className=" w-full h-[350px] object-cover"
-              />
-            </div>
-          </div>
+      <div
+        className="pb-14  pt-20 relative"
+        style={{
+          backgroundImage: `url(${missionbg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+        <div className="relative z-10  ">
+          <div className="  bg-cover bg-center flex items-center justify-center">
+            <div className="w-[85%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
+              {/* Left Section */}
+              <div className="md:w-[70%]  ">
+                <Slider {...sliderSettings}>
+                  <div className="px-3">
+                    <div className="bg-gray-800  p-10   text-white font-playfair rounded-lg shadow-md">
+                      <div>
+                        <h2 className="text-3xl font-bold  uppercase mb-4">
+                          Our Mission
+                        </h2>
+                        <p className="text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
+                        <p className="mt-2 mb-8 text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
 
-          {/* Card 2 - Vision */}
-          <div className="flex flex-col items-center ">
-            <div className="w-full  ">
-              <img
-                src={vision}
-                alt="Vision Illustration"
-                className="w-full h-[350px]  object-cover"
-              />
-            </div>
-            <div className=" p-8 text-justify bg-orange-700  ">
-              <h3 className="text-3xl font-bold font-playfair text-white   mt-8">
-                Our Vision
-              </h3>
-              <p className="text-white py-6 text-lg font-figtree">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                consequuntur ut enim soluta, placeat animi vel pariatur
-                delectus, labore natus illum id eligendi magni dolorem
-                distinctio, laudantium beatae temporibus quas!
-              </p>
-            </div>
-          </div>
+                        <Button text={"READ MORE"} to={"/"} />
+                      </div>
+                    </div>
+                  </div>
 
-          {/* Card 3 - Values */}
-          <div className="flex flex-col items-center ">
-            <div className=" p-8 text-justify bg-sky-700  ">
-              <h3 className="text-3xl font-bold font-playfair text-white   mt-8">
-                Our Values
-              </h3>
-              <p className="text-white py-6 text-lg font-figtree">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                consequuntur ut enim soluta, placeat animi vel pariatur
-                delectus, labore natus illum id eligendi magni dolorem
-                distinctio, laudantium beatae temporibus quas!
-              </p>
-            </div>
-            <div className="w-full  ">
-              <img
-                src={values}
-                alt="Values Illustration"
-                className="w-full h-[350px] object-cover"
-              />
+                  <div className="px-3">
+                    <div className="bg-gray-800  p-10  font-playfair text-white rounded-lg shadow-md">
+                      <div>
+                        <h2 className="text-3xl font-bold  uppercase mb-4">
+                          Our vission
+                        </h2>
+                        <p className="text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
+                        <p className="mt-2 mb-8 text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
+
+                        <Button text={"READ MORE"} to={"/"} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="px-3">
+                    <div className="bg-gray-800  p-10  font-playfair text-white rounded-lg shadow-md">
+                      <div>
+                        <h2 className="text-3xl font-bold  uppercase mb-4">
+                          Our values
+                        </h2>
+                        <p className="text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
+                        <p className="mt-2 mb-8 text-lg">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Quas dolor illo quia sed quisquam sint accusamus
+                          fugit deserunt harum quis impedit est, voluptatibus
+                          in? Facilis obcaecati rem hic asperiores temporibus?
+                        </p>
+
+                        <Button text={"READ MORE"} to={"/"} />
+                      </div>
+                    </div>
+                  </div>
+                </Slider>
+              </div>
+
+              {/* Right Section */}
+              <div className="flex items-end justify-end flex-col  font-playfair text-white p-6 rounded-lg shadow-md">
+                <p className="text-5xl font-medium text-center">
+                  The Future Is Here
+                </p>
+                <p className="text-right text-lg py-10">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Dolore, laudantium delectus veritatis nemo magnam labore
+                  asperiores! Modi ipsum dolores cupiditate unde.{" "}
+                </p>
+                <div className="flex space-x-4">
+                  <a
+                    href="#"
+                    className="   flex items-center justify-center w-[30px] h-[30px] rounded-full bg-white  text-[#00235a]  "
+                  >
+                    <img src={fb} alt="" />
+                  </a>
+                  <a
+                    href="#"
+                    className="  p-2  flex items-center justify-center  w-[30px] h-[30px] rounded-full bg-white   text-[#00235a]  "
+                  >
+                    <img src={insta} alt="" />
+                  </a>
+                  <a
+                    href="#"
+                    className="   p-2  flex items-center justify-center   w-[30px] h-[30px] rounded-full bg-white  text-[#00235a]  "
+                  >
+                    <img src={x} alt="" />
+                  </a>
+                  <a
+                    href="#"
+                    className="   p-2 flex items-center justify-center  w-[30px] h-[30px] rounded-full bg-white   text-[#00235a]  "
+                  >
+                    <img src={linkdin} alt="" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -339,7 +408,7 @@ const Home = () => {
           </div>
 
           <div className="md:w-1/2">
-            <ul className="font-figtree ">
+            <ul className="font-figtree text-gray-800">
               <li>Valued technical expertise across industries</li>
               <li>Maximized value for cost</li>
               <li>
@@ -366,14 +435,14 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-20">
           <ServiceCard
             src={inspection}
-            title={"3rd Party Inspection"}
+            title={"TECHNICAL SERVICES"}
             desc={
               " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
             }
           />
           <ServiceCard
             src={construction}
-            title={"Construction"}
+            title={"MACH INFRA"}
             desc={
               " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
             }
@@ -381,29 +450,46 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-100">
-        <div className="w-[85%] mx-auto">
-          <h2 className=" text-5xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
-            Our Core Values
-          </h2>
-
-          <div className="w-[90%] mx-auto">
-            <img
-              src={core}
-              alt=""
-              className="w-full h-[400px]  object-cover rounded-lg shadow-lg"
-            />
+      <section className="pb-24 bg-gray-100">
+        <div className="relative">
+          <img src={core} alt="" className="w-full h-[450px]  object-cover" />{" "}
+          <div className="w-[75%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"  style={{
+          backgroundImage: `url(${corebg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
+            <h2 className=" text-5xl font-bold font-playfair text-center   py-10">
+              Our Core Values
+            </h2>
+            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 pb-10">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Id deleniti a
+              molestiae fuga expedita, qui sunt illo perferendis eaque nam
+              nostrum quibusdam dicta reprehenderit magni officiis, vitae
+              asperiores similique ipsam. Dolores molestiae in distinctio!
+              Itaque delectus laborum enim ipsum porro? Tempore totam quos
+              officia reiciendis voluptate minus, sunt vitae modi error harum?
+            </p>
           </div>
-          <div className="flex flex-wrap gap-6 justify-center pt-16  ">
-            {Ourvalues.map((value, index) => (
-              <div
-                key={index}
-                className="px-6 py-2 border border-black rounded-full   text-lg font-figtree font-semibold transition-all duration-300 hover:bg-[#104cba] hover:border-[#104cba] hover:text-white"
-              >
-                {value}
-              </div>
-            ))}
-          </div>
+        </div>
+        <div className="w-[85%] mx-auto mt-[200px]">
+         
+            <div className="grid grid-cols-1 md:grid-cols-2    w-[70%] mx-auto gap-y-10 gap-x-20   ">
+              {Ourvalues.map((value, index) => (
+                <div key={index} className="flex items-start">
+                  {/* Icon */}
+                  <div className="text-2xl text-[#104cba] mr-4">➤</div>
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-2xl font-playfair font-bold mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-lg font-playfair text-gray-800">{value.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+         
         </div>
       </section>
 
@@ -437,7 +523,7 @@ const Home = () => {
             <h2 className="text-2xl font-playfair font-bold mb-2">
               Head Office
             </h2>
-            <div className="font-figtree">
+            <div className="font-figtree text-gray-800">
               <p>Mach International (FZE)</p>
               <p>
                 Block B - B14 -114, Sharjah Research Technology & Innovation

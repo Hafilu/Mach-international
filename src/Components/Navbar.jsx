@@ -23,8 +23,9 @@ const Navbar = () => {
 
   const Links = [
     { name: "HOME", link: "/" },
-    { name: "SERVICE", link: "/" },
-    { name: "ABOUT", link: "/about-us" },
+    { name: "GROUP", link: "/" },
+    { name: "TECHNICAL SERVICES", link: "/" },
+    { name: "MACH INFRA", link: "/about-us" },
     { name: "CONTACT US", link: "/contact-us" },
   ];
 
