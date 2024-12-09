@@ -170,7 +170,7 @@ const Home = () => {
                   <p className="text-[20px]   capitalize font-figtree">
                     {banner.title}
                   </p>
-                  <h1 className="text-4xl md:text-8xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
+                  <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
                     {banner.heading}
                   </h1>
                   <div
@@ -193,10 +193,10 @@ const Home = () => {
           <div className="flex flex-col md:flex-row items-center md:items-start gap-14">
             {/* Left Section */}
             <div className="md:w-1/2 about-style-four">
-              <h2 className="text-3xl font-bold font-figtree text-[#104cba]">
+              <h2 className="text-2xl font-bold font-figtree text-[#104cba]">
                 ABOUT US
               </h2>
-              <p className="my-8  text-5xl font-bold font-playfair">
+              <p className="my-8  text-4xl font-bold font-playfair">
                 We Provide Exceptionally Reliable Technical Services & Solution.
               </p>
               <p className="font-figtree text-gray-800 text-lg">
@@ -395,7 +395,7 @@ const Home = () => {
 
       <section className="bg-gray-100 py-24">
         {" "}
-        <h2 className=" text-5xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
+        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
           What makes Mach International distinct from competitors?
         </h2>
         <div className="w-[85%] mx-auto flex justify-between items-center gap-10 about-style-four ">
@@ -428,7 +428,7 @@ const Home = () => {
       </section>
 
       <section className="w-[80%] mx-auto py-24">
-        <h2 className=" text-5xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
+        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
           Here’s what Mach International provides.
         </h2>
 
@@ -458,7 +458,7 @@ const Home = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}>
-            <h2 className=" text-5xl font-bold font-playfair text-center   py-10">
+            <h2 className=" text-4xl font-bold font-playfair text-center   py-10">
               Our Core Values
             </h2>
             <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 pb-10">
@@ -498,7 +498,7 @@ const Home = () => {
       </section>
 
       <section className="w-[85%] mx-auto py-24">
-        <h2 className=" text-5xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
+        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[60%] mb-16">
           Our Branches
         </h2>
         <AddressCard addresses={addresses} />

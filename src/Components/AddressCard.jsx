@@ -50,7 +50,7 @@ const AddressCard = ({ addresses }) => {
             <div className="relative  w-full h-[220px] rounded-lg overflow-hidden border shadow-lg border-gray-300">
               {/* Left Section - Address */}
               <div className="  p-6 bg-white">
-                <h2 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
+                <h2 className="text-2xl font-playfair font-bold text-gray-800 mb-4">
                   {item.country}
                 </h2>
                 <p className="text-lg font-figtree text-gray-700 whitespace-pre-line">

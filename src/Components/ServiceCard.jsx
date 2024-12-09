@@ -15,7 +15,7 @@ const ServiceCard = ({ src, title, desc }) => {
       <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
       {/* Title (Always Visible) */}
-      <div className="absolute top-6  right-10 w-full text-center bg-slate-100 text-black text-3xl font-bold font-playfair  px-6 py-2  rounded-lg   z-10">
+      <div className="absolute top-6  right-10 w-full text-center bg-slate-100 text-black text-2xl font-bold font-playfair  px-6 py-2  rounded-lg   z-10">
         {title}
       </div>
 

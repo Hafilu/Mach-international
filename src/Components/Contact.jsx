@@ -44,10 +44,10 @@ const ContactSection = () => {
       <div className="relative z-10   w-[85%] mx-auto  flex flex-col lg:flex-row items-center lg:items-start gap-20 py-24">
         {/* Left Section */}
         <div className="text-white lg:w-[60%]">
-          <h2 className="text-5xl font-bold font-playfair mb-10">
+          <h2 className="text-4xl font-bold font-playfair mb-10">
             Business Strategies
           </h2>
-          <h4 className="text-2xl font-semibold   font-figtree mb-6">
+          <h4 className="text-xl font-semibold   font-figtree mb-6">
             Strategy & Change Management
           </h4>
           <p className="text-base mb-6">
@@ -56,7 +56,7 @@ const ContactSection = () => {
             model, analyze and adopt the same if it enhances the services &
             solutions provided by Mach International
           </p>
-          <h4 className="text-2xl font-semibold   font-figtree mb-6">
+          <h4 className="text-xl font-semibold   font-figtree mb-6">
             Research & Analysis
           </h4>
           <p className="text-base mb-6">
