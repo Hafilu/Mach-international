@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import { NavLink } from "react-router-dom";
-
+import { HashLink as NavLink } from "react-router-hash-link";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,11 +21,11 @@ const Navbar = () => {
   }, []);
 
   const Links = [
-    { name: "HOME", link: "/" },
-    { name: "GROUP", link: "/" },
+    { name: "HOME", link: "/#home" },
+    { name: "GROUP", link: "/#about-us" },
     { name: "TECHNICAL SERVICES", link: "/" },
-    { name: "MACH INFRA", link: "/about-us" },
-    { name: "CONTACT US", link: "/contact-us" },
+    { name: "MACH INFRA", link: "/" },
+    { name: "CONTACT US", link: "/#contact-us" },
   ];
 
   return (
@@ -65,7 +64,8 @@ const Navbar = () => {
               }`}
             >
               <NavLink
-                to={link.link}
+                smooth
+                to={link.link} // e.g., "/about#section-id"
                 className={`font-playfair hover:text-[#104cba] duration-500 ${
                   isScrolled ? "text-black" : "text-white"
                 }`}

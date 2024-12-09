@@ -140,7 +140,7 @@ const Home = () => {
   };
   return (
     <div>
-      <div className="carousel-wrapper relative">
+      <div className="carousel-wrapper relative" id="home">
         <Carousel
           showThumbs={false}
           autoPlay
@@ -188,7 +188,7 @@ const Home = () => {
         </Carousel>
       </div>
 
-      <section className="bg-gray-100 py-24">
+      <section className="bg-gray-100 py-24" id="about-us">
         <div className="w-[85%] mx-auto  ">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-14">
             {/* Left Section */}
@@ -291,13 +291,13 @@ const Home = () => {
                           fugit deserunt harum quis impedit est, voluptatibus
                           
                         </p>
-                        <p className="mt-2 mb-8 text-lg">
+                        <p className="mt-2 mb-4 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                            
                         </p>
 
-                        <Button text={"READ MORE"} to={"/"} />
+                         
                       </div>
                     </div>
                   </div>
@@ -314,13 +314,13 @@ const Home = () => {
                           fugit deserunt harum quis impedit est, voluptatibus
                            
                         </p>
-                        <p className="mt-2 mb-8 text-lg">
+                        <p className="mt-2 mb-4 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                          
                         </p>
 
-                        <Button text={"READ MORE"} to={"/"} />
+                        
                       </div>
                     </div>
                   </div>
@@ -336,13 +336,13 @@ const Home = () => {
                           fugit deserunt harum quis impedit est, voluptatibus
                           
                         </p>
-                        <p className="mt-2 mb-8 text-lg">
+                        <p className="mt-2 mb-4 text-lg">
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit. Quas dolor illo quia sed quisquam sint accusamus
                            
                         </p>
 
-                        <Button text={"READ MORE"} to={"/"} />
+                         
                       </div>
                     </div>
                   </div>
@@ -448,7 +448,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="pb-24 bg-gray-100">
+      <section className="pb-24 bg-gray-100" id="core-value">
         <div className="relative">
           <img src={core} alt="" className="w-full h-[450px]  object-cover" />{" "}
           <div className="w-[75%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"  style={{
@@ -491,7 +491,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section>
+      <section id="contact-us">
         <ContactSection />
       </section>
 
