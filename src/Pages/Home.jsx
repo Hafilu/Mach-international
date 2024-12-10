@@ -287,7 +287,7 @@ const Home = () => {
               alt=""
               className="w-[30px] h-[30px] object-cover"
             />
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 py-6">
+            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
               ratione sed dolor voluptatibus! Quos veniam assumenda illo
               voluptate necessitatibus tenetur, beatae mollitia dolores id
@@ -321,7 +321,7 @@ const Home = () => {
                 className="w-[30px] h-[30px] object-cover"
               />
             </div>
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 py-6">
+            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
               ratione sed dolor voluptatibus! Quos veniam assumenda illo
               voluptate necessitatibus tenetur, beatae mollitia dolores id
@@ -352,7 +352,7 @@ const Home = () => {
               alt=""
               className="w-[30px] h-[30px] object-cover"
             />
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 py-6">
+            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
               ratione sed dolor voluptatibus! Quos veniam assumenda illo
               voluptate necessitatibus tenetur, beatae mollitia dolores id
