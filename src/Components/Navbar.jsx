@@ -21,10 +21,10 @@ const Navbar = () => {
   }, []);
 
   const Links = [
-    { name: "HOME", link: "/#home" },
+    { name: "HOME", link: "/" },
     { name: "GROUP", link: "/#about-us" },
-    { name: "TECHNICAL SERVICES", link: "/" },
-    { name: "MACH INFRA", link: "/" },
+    { name: "TECHNICAL SERVICES", link: "/services/tech-services" },
+    { name: "MACH INFRA", link: "/services/mach-infra" },
     { name: "CONTACT US", link: "/#contact-us" },
   ];
 

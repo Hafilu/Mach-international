@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "./Button";
+import { NavLink } from "react-router-dom";
 
-const ServiceCard = ({ src, title, desc }) => {
+const ServiceCard = ({ src, title, desc, id }) => {
   return (
     <div className="group relative overflow-hidden rounded-lg shadow-lg">
       {/* Image */}
@@ -22,7 +23,8 @@ const ServiceCard = ({ src, title, desc }) => {
       {/* Description (Visible on Hover) */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 p-10">
         <p className="text-white py-6 text-lg font-figtree">{desc}</p>
-        <Button text={"View More"} to={"/"} color={"white"} />
+
+        <Button text={"View More"} to={`/services/${id}`} color={"white"} />
       </div>
     </div>
   );

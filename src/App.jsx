@@ -1,8 +1,9 @@
 import Navbar from "./Components/Navbar"
 import {   Routes, Route } from 'react-router-dom';
 import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Contact from "./Pages/Contact";
+ 
+import Services from "./Pages/Service";
+import Footer from "./Components/Footer";
  
 
 function App() {
@@ -16,12 +17,10 @@ function App() {
             {/*Implementing Routes for respective Path */}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about-us" element={<About/>}/>
-                    
-                
-                <Route path="/contact-us" element={<Contact/>} />
+                <Route path="/services/:serviceId" element={<Services />} />
+              
             </Routes>
-         
+            <Footer />
     </>
   )
 }

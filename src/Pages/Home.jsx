@@ -20,8 +20,7 @@ import CountUp, { useCountUp } from "react-countup";
 import ServiceCard from "../Components/ServiceCard";
 import ContactSection from "../Components/Contact";
 import AddressCard from "../Components/AddressCard";
-import Footer from "../Components/Footer";
-
+ 
 const banners = [
   {
     id: 1,
@@ -408,6 +407,7 @@ const Home = () => {
             desc={
               " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
             }
+            id={"tech-services"}
           />
           <ServiceCard
             src={construction}
@@ -415,6 +415,7 @@ const Home = () => {
             desc={
               " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
             }
+            id={"mach-infra"}
           />
         </div>
       </section>
@@ -525,7 +526,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
