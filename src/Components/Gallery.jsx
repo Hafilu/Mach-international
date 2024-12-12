@@ -60,9 +60,9 @@ const Gallery = () => {
         images={filteredPosts?.map((image) => image.imageSrc)} // Pass the array of image URLs
       >
         {filteredPosts?.map((image, imageIndex) => (
-          <div key={imageIndex} className="photo-card">
+          <div key={imageIndex} className="photo-card h-[350px] rounded-lg group overflow-hidden">
             <img
-              className="h-[350px] object-cover w-full shadow-md rounded-lg"
+              className=" object-cover w-full h-full shadow-md  transition-transform duration-500 group-hover:scale-110 "
               src={image.imageSrc}
               alt={image.id}
               data-lightboxjs="gallery-lightbox" // Identifier for Lightbox images

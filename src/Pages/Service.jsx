@@ -15,13 +15,13 @@ const OurServices = [
   {
     title: "Engineering",
     description:
-      "We provide a complete and cost-effective Engineering package to our clients in the Oil & Gas, Marine, Petrochemical, Renewable Energy, Power, Manufacturing, Infrastructure.",
+      "We provide a complete and cost-effective Engineering package to our clients in the Oil & Gas, Marine, Petrochemical, Renewable Energy, Power...",
     image_url: service1,
   },
   {
     title: "Second Party & Third Party Inspections",
     description:
-      "Second Party (Client/Project Quality representatives) and Third Party (Independent) involves activities performed at Suppliers’/Manufacturers’ facilities  ",
+      "Second Party (Client/Project Quality representatives) and Third Party (Independent) involves...  ",
     image_url: service2,
   },
   {
@@ -33,19 +33,19 @@ const OurServices = [
   {
     title: "Project Management",
     description:
-      "We provide Project Management services for executing complex projects in Oil & Gas, Marine, Petrochemical, Renewable Energy, Power, Manufacturing.",
+      "We provide Project Management services for executing complex projects in Oil & Gas, Marine, Petrochemical...",
     image_url: service4,
   },
   {
     title: "Procurement Services",
     description:
-      "We assist our clients in finding vendors that can reliably deliver results who will also work as trusted partners, who often require a rigorous vetting process. We assemble RFQs/RFPs from vendors ...",
+      "We assist our clients in finding vendors that can reliably deliver results who will also work as trusted partners, who often require...",
     image_url: service5,
   },
   {
     title: "Vendor Assessments & Audits",
     description:
-      "Vendor Assessment (Evaluation) Audits are done by performing a thorough independent assessment of supplier facility",
+      "Vendor Assessment (Evaluation) Audits are done by performing a thorough independent assessment...",
     image_url: service6,
   },
 ];
@@ -118,31 +118,31 @@ const Services = () => {
         </p>
       </section>
 
-      <section className="w-[80%] mx-auto pb-24">
+      <section className="w-[85%] mx-auto pb-24">
         <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
           Our Services
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2   gap-14">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
           {OurServices.map((service, index) => (
             <div key={index}>
-              <div className="relative">
+              <div className="relative  ">
                 <img
                   src={service.image_url}
                   alt=""
-                  className="w-full h-[450px] object-cover"
+                  className="w-full h-[420px] object-cover"
                 />
 
-                <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-80 md:w-1/2 w-[80%] h-[450px] p-8 font-playfair ">
+                <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 md:w-[55%] w-[80%] h-[420px] p-6 font-playfair ">
                   <div>
-                    <h3 className="mb-8 text-2xl">{service.title}</h3>
-                    <p className="text-lg text-gray-800">
+                    <h3 className="mb-6 text-[20px]">{service.title}</h3>
+                    <p className="text-lg text-gray-700">
                       {service.description}
                     </p>{" "}
                   </div>
 
                   <div className="my-3">
                     <button onClick={() => openModal(service.title)}>
-                      <span className="border-black border py-2 px-6 rounded-md text-base font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba]  active:opacity-70">
+                      <span className="border-black border py-2 px-5 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba]  active:opacity-70">
                         READ MORE
                       </span>
                     </button>
