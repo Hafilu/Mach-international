@@ -145,7 +145,7 @@ const Home = () => {
           showStatus={false}
           showArrows={false}
           interval={3000}
-          swipeable={true}
+          swipeable={false}
           emulateTouch={true}
         >
           {banners.map((banner, index) => (
