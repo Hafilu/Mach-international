@@ -11,6 +11,8 @@ import service6 from "../assets/service6.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Gallery from "../Components/Gallery";
 import CertificationSlider from "../Components/CertificationSlider";
+import ContactSection from "../Components/Contact";
+import ProjectCard from "../Components/ProjectCard";
 const OurServices = [
   {
     title: "Engineering",
@@ -154,6 +156,17 @@ const Services = () => {
         </div>
       </section>
 
+      <section className="w-[85%] mx-auto pb-24 font-playfair">
+        <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
+          Projects Completed
+        </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
+          <ProjectCard/>
+          <ProjectCard/>
+          <ProjectCard/>
+        </div>
+      </section>
+
       <section className="w-[85%] mx-auto pb-24">
         <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
           Our Gallery
@@ -168,6 +181,10 @@ const Services = () => {
         </p>
 
         <CertificationSlider />
+      </section>
+
+      <section>
+        <ContactSection />
       </section>
 
       {isModalOpen && (
