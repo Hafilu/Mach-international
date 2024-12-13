@@ -4,25 +4,24 @@ import * as Yup from "yup";
 import contactbg from "../assets/contactbg.jpg";
 import CountUp, { useCountUp } from "react-countup";
 
-
 const ContactSection = () => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     mobile: Yup.string().required("Number is required"),
-     
+
     message: Yup.string().required("Message is required"),
   });
 
-  const initialValues = { name: "", email: "", message: "",mobile:"" };
+  const initialValues = { name: "", email: "", message: "", mobile: "" };
 
   const handleSubmit = (values, { resetForm }) => {
     console.log("Form Data:", values);
     resetForm();
   };
   const stats = [
-    { value: "5",suffix:"K", label: "Field Personnel Worldwide" },
-    { value: "100",suffix:"%",  label: "Positive Rating" },
+    { value: "5", suffix: "K", label: "Field Personnel Worldwide" },
+    { value: "100", suffix: "%", label: "Positive Rating" },
   ];
   useCountUp({
     ref: "counter",
@@ -64,24 +63,29 @@ const ContactSection = () => {
             the industry and Mach International’s services & business models.
           </p>
 
-
           <div className="flex items-center justify-start gap-4 py-8">
-      {stats.map((stat, index) => (
-        <React.Fragment key={index}>
-          <div className="text-center">
-            <h2 className="text-5xl font-bold font-playfair text-[#104cba]"> <CountUp end={stat.value} duration={2} enableScrollSpy />{stat.suffix}</h2>
-            <p className="text-white font-figtree text-base">{stat.label}</p>
+            {stats.map((stat, index) => (
+              <React.Fragment key={index}>
+                <div className="text-center">
+                  <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
+                    {" "}
+                    <CountUp end={stat.value} duration={2} enableScrollSpy />
+                    {stat.suffix}
+                  </h2>
+                  <p className="text-white font-figtree text-base">
+                    {stat.label}
+                  </p>
+                </div>
+                {index < stats.length - 1 && (
+                  <div className="h-12 border-l border-gray-300 mx-6"></div> // Vertical line
+                )}
+              </React.Fragment>
+            ))}
           </div>
-          {index < stats.length - 1 && (
-            <div className="h-12 border-l border-gray-300 mx-6"></div> // Vertical line
-          )}
-        </React.Fragment>
-      ))}
-    </div>
         </div>
 
         {/* Right Section (Contact Form) */}
-        <div className=" p-6 rounded-lg shadow-lg lg:w-[40%]">
+        <div className=" lg:p-6 rounded-lg shadow-lg lg:w-[40%]  w-full">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -121,7 +125,6 @@ const ContactSection = () => {
                   />
                 </div>
 
-                 
                 <div>
                   <label className="block text-white mb-2" htmlFor="mobile">
                     Mobile

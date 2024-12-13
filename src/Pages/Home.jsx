@@ -160,8 +160,8 @@ const Home = () => {
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
               {/* Title and description overlay */}
-              <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white px-4">
-                <div className="text-left w-[70%]">
+              <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white ">
+                <div className="text-left lg:w-[70%] w-[90%]">
                   <p className="text-[20px]   capitalize font-figtree">
                     {banner.title}
                   </p>
@@ -185,9 +185,9 @@ const Home = () => {
 
       <section className="bg-gray-100 py-24" id="about-us">
         <div className="w-[85%] mx-auto  ">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-14">
+          <div className="flex flex-col lg:flex-row items-center md:items-start gap-14">
             {/* Left Section */}
-            <div className="md:w-1/2 about-style-four">
+            <div className="lg:w-1/2 about-style-four">
               <h2 className="text-2xl font-bold font-figtree text-[#104cba]">
                 ABOUT US
               </h2>
@@ -214,15 +214,15 @@ const Home = () => {
             </div>
 
             {/* Right Section */}
-            <div className="md:w-1/2 ">
-              <div className="w-[80%] ml-auto relative">
+            <div className="lg:w-1/2 ">
+              <div className="lg:w-[80%] w-full ml-auto relative">
                 <img
                   src="https://img.freepik.com/free-photo/construction-site-silhouettes_1127-3253.jpg?t=st=1733738896~exp=1733742496~hmac=ecb0df6018f757857eb00a4fc20443ef8b32a9ebb27e2208a4eb730bf6493c66&w=900"
                   alt="Business Representation"
-                  className="w-full h-[550px] object-cover rounded-lg shadow-lg "
+                  className="w-full md:h-[550px] h-[400px]  object-cover rounded-lg shadow-lg "
                 />
 
-                <div className="mt-12  font-figtree w-[80%]  grid grid-cols-6 md:grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
+                <div className="mt-12  font-figtree w-[80%]  grid  grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
                   {/* Statistic Item */}
                   <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
                     <h3 className="text-4xl font-bold mb-2  text-white">
@@ -262,7 +262,7 @@ const Home = () => {
         <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
           Our Company Culture
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3  ">
+        <div className="grid grid-cols-1 lg:grid-cols-3   ">
           <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
             <img
               src={mission}
@@ -295,7 +295,7 @@ const Home = () => {
           </div>
 
           <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
-            <div className="w-full flex justify-center flex-col items-center border-x-2 border-gray-500">
+            <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
               <img
                 src={vission}
                 alt=""
@@ -313,7 +313,7 @@ const Home = () => {
                 <div className="border-t border-[#104cba] w-20"></div>
               </div>
             </div>
-            <div className="w-full flex justify-center flex-col items-center border-x-2 border-gray-500">
+            <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
               <img
                 src={vission}
                 alt=""
@@ -363,15 +363,15 @@ const Home = () => {
 
       <section className="bg-gray-100 py-24">
         {" "}
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
+        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] w-[85%] mb-16">
           What makes Mach International distinct from competitors?
         </h2>
-        <div className="w-[85%] mx-auto flex justify-between items-center gap-10 about-style-four ">
+        <div className="w-[85%] mx-auto flex justify-between items-center md:flex-row flex-col  gap-10 about-style-four ">
           <div className="md:w-1/2">
             <img
               src={stand}
               alt="Business Representation"
-              className="w-[85%] h-[400px] object-cover rounded-lg shadow-lg"
+              className="lg:w-[85%] h-[400px] object-cover rounded-lg shadow-lg"
             />
           </div>
 
@@ -395,12 +395,12 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-[80%] mx-auto py-24">
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
+      <section className="lg:w-[80%] w-[85%] mx-auto py-24">
+        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto lg:w-[50%] w-[85%] mb-16">
           Here’s what Mach International provides.
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center lg:gap-20 gap-6">
           <ServiceCard
             src={inspection}
             title={"TECHNICAL SERVICES"}
@@ -424,7 +424,7 @@ const Home = () => {
         <div className="relative">
           <img src={core} alt="" className="w-full h-[450px]  object-cover" />{" "}
           <div
-            className="w-[75%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"
+            className="md:w-[75%] w-[85%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"
             style={{
               backgroundImage: `url(${corebg})`,
               backgroundSize: "cover",
@@ -434,7 +434,7 @@ const Home = () => {
             <h2 className=" text-4xl font-bold font-playfair text-center   py-10">
               Our Core Values
             </h2>
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-16 pb-10">
+            <p className="text-lg mb-2 text-center font-playfair text-gray-800 md:px-16 px-6 pb-10">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
               ipsum dolor sit amet consectetur adipisicing elit. Id deleniti a
               molestiae fuga expedita, qui sunt illo perferendis eaque nam
@@ -496,7 +496,7 @@ const Home = () => {
           ></iframe>
 
           {/* Address Card */}
-          <div className="absolute top-4 right-4 bg-white p-6 rounded-lg shadow-lg max-w-sm">
+          <div className="absolute md:top-4 md:right-4 bottom-3 h-min bg-white p-6 rounded-lg shadow-lg max-w-sm">
             <h2 className="text-2xl font-playfair font-bold mb-2">
               Head Office
             </h2>

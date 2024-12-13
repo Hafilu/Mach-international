@@ -82,8 +82,8 @@ const Services = () => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
         {/* Title and description overlay */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white px-4">
-          <div className="text-left w-[70%]">
+        <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white  ">
+          <div className="text-left lg:w-[70%] w-[90%]">
             <p className="text-2xl   capitalize font-figtree">
               What Makes Mach International
             </p>
@@ -101,7 +101,7 @@ const Services = () => {
       </div>
 
       <section className="w-[85%] mx-auto py-24">
-        <p className="mb-8 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
+        <p className="mb-8 lg:w-[50%] md:w-[70%] mx-auto  text-4xl text-center font-bold font-playfair">
           We Provide Exceptionally Reliable Technical Services & Solution.
         </p>
         <p className="font-figtree text-center text-gray-800 text-lg">
@@ -134,7 +134,7 @@ const Services = () => {
                   className="w-full h-[420px] object-cover"
                 />
 
-                <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 md:w-[55%] w-[80%] h-[420px] p-6 font-playfair ">
+                <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[420px] p-6 font-playfair ">
                   <div>
                     <h3 className="mb-6 text-[20px]">{service.title}</h3>
                     <p className="text-lg text-gray-700">

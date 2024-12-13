@@ -3,7 +3,7 @@ import React from 'react'
 const ProjectCard = () => {
   return (
     <div>
-          <div className="relative flex flex-col justify-center overflow-hidden py-6">
+          <div className="relative flex flex-col justify-center overflow-hidden  ">
             <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-lg   transition-all duration-300 hover:-translate-y-1 rounded-lg border   ">
               <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-[#104cba] transition-all duration-300 group-hover:scale-[15]"></span>
               <div className="relative z-10 mx-auto max-w-md">
@@ -24,7 +24,7 @@ const ProjectCard = () => {
                   </svg>
                 </span>
 
-                <h4 className="my-4 text-[22px] font-bold group-hover:text-white/90">
+                <h4 className="my-4 text-[22px] font-medium   transition-all duration-300 group-hover:text-white/90">
                   Project Title
                 </h4>
 

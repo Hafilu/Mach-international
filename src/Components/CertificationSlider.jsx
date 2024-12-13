@@ -13,6 +13,8 @@ const CertificationSlider = () => {
     swipeToSlide: true,
     slidesToShow: 4,
     slidesToScroll: 1,
+    centerMode: true, // Enables centering
+    centerPadding: "50px", // Adjust padding as needed
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 2000,
@@ -22,7 +24,7 @@ const CertificationSlider = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: false,
           dots: true,
         },
@@ -31,7 +33,7 @@ const CertificationSlider = () => {
         breakpoint: 900,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -56,12 +58,12 @@ const CertificationSlider = () => {
     <div className="w-full overflow-hidden">
       <Slider {...settings}>
         {Ourcertifications?.map((item, index) => (
-          <div key={index} className="px-3">
+          <div key={index} className="px-3  ">
             <SlideshowLightbox
-              className="w-full h-full"
+              className="w-full h-full "
               modalClose={"clickOutside"}
             >
-              <img src={item.imageSrc} alt="" />
+              <img src={item.imageSrc} alt=""   />
             </SlideshowLightbox>
           </div>
         ))}

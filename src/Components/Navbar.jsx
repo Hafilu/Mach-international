@@ -46,28 +46,29 @@ const Navbar = () => {
         {/* Menu Icon */}
         <div
           onClick={() => setOpen(!open)}
-          className="absolute right-8 top-8 cursor-pointer md:hidden w-7 h-7"
+          className="absolute right-8 top-8 cursor-pointer lg:hidden w-7 h-7"
         >
           {open ? <XMarkIcon /> : <Bars3BottomRightIcon />}
         </div>
         {/* Link Items */}
         <ul
-          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
-            open ? "top-12" : "top-[-490px]"
+          className={`lg:flex lg:items-center bg-white lg:bg-transparent  lg:pb-0 pb-12 absolute lg:static lg:z-auto z-[-1] left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in ${
+            open ? "top-0 pt-[100px] lg:pt-0 " : "top-[-490px]"
           }`}
         >
           {Links.map((link, index) => (
             <li
               key={index}
-              className={`md:ml-8 md:my-0 my-7 font-semibold ${
-                isScrolled ? "text-black" : "text-white"
+              className={`lg:ml-8 lg:my-0 my-7  font-semibold ${
+                isScrolled ? "text-black" : "lg:text-white"
               }`}
+              onClick={() => setOpen(!open)}
             >
               <NavLink
                 smooth
                 to={link.link} // e.g., "/about#section-id"
                 className={`font-playfair hover:text-[#104cba] duration-500 ${
-                  isScrolled ? "text-black" : "text-white"
+                  isScrolled ? "text-black" : "lg:text-white"
                 }`}
               >
                 {link.name}

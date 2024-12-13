@@ -34,7 +34,7 @@ const Gallery = () => {
 
   return (
     <div>
-      <div className="flex  mb-8">
+      <div className="flex flex-wrap gap-4 md:gap-0  mb-8">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -52,7 +52,7 @@ const Gallery = () => {
 
       {/* Image Grid with Lightbox */}
       <SlideshowLightbox
-        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         lightboxIdentifier="gallery-lightbox"
         showThumbnails
         modalClose={"clickOutside"}

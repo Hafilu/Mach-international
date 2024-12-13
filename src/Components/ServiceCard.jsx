@@ -9,7 +9,7 @@ const ServiceCard = ({ src, title, desc, id }) => {
       <img
         src={src}
         alt="Service"
-        className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
+        className="w-full lg:h-[400px] h-[450px] object-cover transition-transform duration-500 group-hover:scale-110"
       />
 
       {/* Black Overlay */}
@@ -21,7 +21,7 @@ const ServiceCard = ({ src, title, desc, id }) => {
       </div>
 
       {/* Description (Visible on Hover) */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 p-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 lg:p-10 p-4">
         <p className="text-white py-6 text-lg font-figtree">{desc}</p>
 
         <Button text={"View More"} to={`/services/${id}`} color={"white"} />

@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="relative  text-black">
       {/* Top Section */}
-      <div className="w-[85%]  mx-auto grid grid-cols-1 justify-items-center md:grid-cols-3 gap-8   pt-12 pb-8">
+      <div className="w-[85%]  mx-auto grid grid-cols-1 md:justify-items-center md:grid-cols-3 gap-8   pt-12 pb-8">
         {/* Logo and Social Media */}
         <div>
           <img
