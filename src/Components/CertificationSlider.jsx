@@ -6,7 +6,7 @@ import b2 from "../assets/certi2.jpeg";
 import b3 from "../assets/certi3.jpeg";
 import b4 from "../assets/certi4.jpeg";
 import { SlideshowLightbox } from "lightbox.js-react";
-const CertificationSlider = () => {
+const CertificationSlider = ({Ourcertifications}) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -46,14 +46,7 @@ const CertificationSlider = () => {
       },
     ],
   };
-  const Ourcertifications = [
-    { id: 1, imageSrc: b1 },
-    { id: 2, imageSrc: b2 },
-    { id: 3, imageSrc: b3 },
-    { id: 4, imageSrc: b4 },
-
-    // Add more blog posts as needed
-  ];
+  
   return (
     <div className="w-full overflow-hidden">
       <Slider {...settings}>
@@ -63,7 +56,7 @@ const CertificationSlider = () => {
               className="w-full h-full "
               modalClose={"clickOutside"}
             >
-              <img src={item.imageSrc} alt=""   />
+              <img src={item.image_url} alt=""   />
             </SlideshowLightbox>
           </div>
         ))}

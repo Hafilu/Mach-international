@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LazyLoad from "react-lazyload";
 import Button from "../Components/Button";
 import banner2 from "../assets/banner2.jpg";
@@ -13,6 +13,10 @@ import Gallery from "../Components/Gallery";
 import CertificationSlider from "../Components/CertificationSlider";
 import ContactSection from "../Components/Contact";
 import ProjectCard from "../Components/ProjectCard";
+import { useParams } from "react-router-dom";
+import { fetchServiceData } from "../Api/Api";
+import Loader from "../Components/Loader";
+import MetaHelmet from "../Components/MetaData";
 const OurServices = [
   {
     title: "Engineering",
@@ -53,9 +57,12 @@ const OurServices = [
 ];
 
 const Services = () => {
+  const { serviceId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [modalContent, setModalContent] = useState({});
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const openModal = (id) => {
     setIsModalOpen(true);
     setTimeout(() => setIsTransitioning(true), 10);
@@ -63,129 +70,155 @@ const Services = () => {
       return OurServices.find((item) => item.title === id);
     });
   };
-  console.log(modalContent);
+
   const closeModal = () => {
     setIsTransitioning(false);
     setTimeout(() => setIsModalOpen(false), 300);
   };
 
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        const result = await fetchServiceData(serviceId);
+        setData(result);
+        // Now that data is loaded, find the blog
+        setIsLoading(false);
+        // Set other blogs excluding the selected one
+      } catch (error) {
+        setIsLoading(false);
+        console.error("Error fetching service data:", error);
+      }
+    };
+
+    loadData();
+  }, [serviceId]); // Dependency on blogId
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
-      <div className="relative">
-        <LazyLoad height={200}>
-          <img
-            src={banner2}
-            alt={"banner"}
-            className="w-full h-screen object-cover"
-          />
-        </LazyLoad>
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
-        {/* Title and description overlay */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white  ">
-          <div className="text-left lg:w-[70%] w-[90%]">
-            <p className="text-2xl   capitalize font-figtree">
-              What Makes Mach International
-            </p>
-            <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
-              Our Service Industry Sectors
-            </h1>
-            <div className="text-[20px] mb-10  capitalize font-figtree">
-              Oil & Gas, Marine, Petrochemical, Renewable Energy, Power,
-              Manufacturing, Infrastructure and other associated industries.
-            </div>
+      {data && <MetaHelmet metaData={data.meta_data} />}
 
-            <Button text={"READ MORE"} to={"/"} />
+      {data?.banner && (
+        <div className="relative">
+          <LazyLoad height={200}>
+            <img
+              src={data.banner.banner_url}
+              alt={"banner"}
+              className="w-full h-screen object-cover"
+            />
+          </LazyLoad>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
+          {/* Title and description overlay */}
+          <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white  ">
+            <div className="text-left lg:w-[70%] w-[90%]">
+              <p className="text-2xl   capitalize font-figtree">
+                What Makes Mach International
+              </p>
+              <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
+                {data.banner.banner_title}
+              </h1>
+              <div className="text-[20px] mb-10  capitalize font-figtree">
+                {data.banner.banner_sub_title}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <section className="w-[85%] mx-auto py-24">
-        <p className="mb-8 lg:w-[50%] md:w-[70%] mx-auto  text-4xl text-center font-bold font-playfair">
-          We Provide Exceptionally Reliable Technical Services & Solution.
-        </p>
-        <p className="font-figtree text-center text-gray-800 text-lg">
-          Mach International is a fast-growing customercentric technical
-          services and solutions provider, worldwide. We provide exceptionally
-          reliable technical services and solutions for Second Party & Third
-          Party Inspections, Hazardous Area Inspections, Expediting (Desk &
-          Field), Vendor Assessments, Audits, Engineering, Project Management,
-          Technical Staffing and Procurement services in Oil & Gas, Marine,
-          Petrochemical, Renewable Energy, Power, Manufacturing, Infrastructure
-          and other associated industries. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Vel dicta cum, doloribus reprehenderit
-          dolores, hic reiciendis optio harum iste voluptatibus blanditiis
-          laudantium soluta? Sed consectetur nostrum, cum perspiciatis quasi
-          dignissimos!
-        </p>
-      </section>
+      {data?.service && (
+        <section className="w-[85%] mx-auto py-24">
+          <p className="mb-8 lg:w-[50%] md:w-[70%] mx-auto  text-4xl text-center font-bold font-playfair">
+            {data.service.inner_title}
+          </p>
+          <div className="font-figtree text-center text-gray-800 text-lg">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.service.description,
+              }}
+            />
+          </div>
+        </section>
+      )}
 
-      <section className="w-[85%] mx-auto pb-24">
-        <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-          Our Services
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
-          {OurServices.map((service, index) => (
-            <div key={index}>
-              <div className="relative  ">
-                <img
-                  src={service.image_url}
-                  alt=""
-                  className="w-full h-[420px] object-cover"
-                />
+      {data?.service?.sub_services?.length > 0 && (
+        <section className="w-[85%] mx-auto pb-24">
+          <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
+            Our Services
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
+            {data.service.sub_services.map((service, index) => (
+              <div key={index}>
+                <div className="relative  ">
+                  <img
+                    src={service.thumbnail_image_url}
+                    alt=""
+                    className="w-full h-[420px] object-cover"
+                  />
 
-                <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[420px] p-6 font-playfair ">
-                  <div>
-                    <h3 className="mb-6 text-[20px]">{service.title}</h3>
-                    <p className="text-lg text-gray-700">
-                      {service.description}
-                    </p>{" "}
-                  </div>
+                  <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[420px] p-6 font-playfair ">
+                    <div>
+                      <h3 className="mb-6 text-[20px]">{service.title}</h3>
+                      <div className="text-lg text-gray-700">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: service.short_description,
+                          }}
+                        />
+                      </div>{" "}
+                    </div>
 
-                  <div className="my-3">
-                    <button onClick={() => openModal(service.title)}>
-                      <span className="border-black border py-2 px-5 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba]  active:opacity-70">
-                        READ MORE
-                      </span>
-                    </button>
+                    <div className="my-3">
+                      <button onClick={() => openModal(service.title)}>
+                        <span className="border-black border py-2 px-5 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba]  active:opacity-70">
+                          READ MORE
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
-      <section className="w-[85%] mx-auto pb-24 font-playfair">
-        <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-          Projects Completed
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
-          <ProjectCard/>
-          <ProjectCard/>
-          <ProjectCard/>
-        </div>
-      </section>
-
+      {data?.service?.projects?.length > 0 && (
+        <section className="w-[85%] mx-auto pb-24 font-playfair">
+          <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
+            Projects Completed
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
+            {data.service.projects.map((project, index) => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        </section>
+      )}
+ {data?.service?.gallery?.length > 0 && (
       <section className="w-[85%] mx-auto pb-24">
         <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
           Our Gallery
         </p>
 
-        <Gallery />
-      </section>
-
+        <Gallery gallery={data.service.gallery}/>
+      </section>)}
+      {data?.service?.certifications?.length > 0 && (
       <section className="w-[85%] mx-auto pb-24">
         <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
           Licenses and certifications
         </p>
 
-        <CertificationSlider />
+        <CertificationSlider Ourcertifications={data.service.certifications} />
       </section>
-
-      <section>
-        <ContactSection />
-      </section>
+      )}
+      {data?.contactUs && (
+        <section id="contact-us">
+          <ContactSection contact={data.contactUs} />
+        </section>
+      )}
 
       {isModalOpen && (
         <div

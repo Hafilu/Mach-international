@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 const AddressCard = ({ addresses }) => {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     swipeToSlide: true,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -46,19 +46,19 @@ const AddressCard = ({ addresses }) => {
     <div className="w-full overflow-hidden">
       <Slider {...settings}>
         {addresses?.map((item, index) => (
-          <div key={index} className="px-3"> {/* Add spacing between cards */}
+          <div key={item.id} className="px-3"> {/* Add spacing between cards */}
             <div className="relative  w-full h-[220px] rounded-lg overflow-hidden border shadow-lg border-gray-300">
               {/* Left Section - Address */}
               <div className="  p-6 bg-white">
                 <h2 className="text-2xl font-playfair font-bold text-gray-800 mb-4">
-                  {item.country}
+                  {item.title}
                 </h2>
-                <p className="text-lg font-figtree text-gray-700 whitespace-pre-line">
-                  {item.address}
+                <p className="text-lg font-figtree w-[70%] text-gray-700 whitespace-pre-line">
+                  {item.sub_title}
                 </p>
               </div>
               {/* Right Section - Flag */}
-              <img src={item.flag} alt="" className="w-[130px]    object-contain absolute top-0 right-0"/>
+              <img src={item.image_url} alt="" className="w-[130px]    object-contain absolute top-0 right-0"/>
               
                
             </div>

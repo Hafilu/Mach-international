@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import banner1 from "../assets/banner1.jpg";
 import banner2 from "../assets/banner2.jpg";
 import banner3 from "../assets/banner3.jpg";
@@ -20,7 +20,10 @@ import CountUp, { useCountUp } from "react-countup";
 import ServiceCard from "../Components/ServiceCard";
 import ContactSection from "../Components/Contact";
 import AddressCard from "../Components/AddressCard";
- 
+import Loader from "../Components/Loader";
+import { fetchHomeData } from "../Api/Api";
+import MetaHelmet from "../Components/MetaData";
+
 const banners = [
   {
     id: 1,
@@ -116,6 +119,26 @@ Whitefield, Bengaluru, India`,
   },
 ];
 const Home = () => {
+  const [data, setData] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        const result = await fetchHomeData();
+
+        setData(result);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        console.error("Error fetching home data:", error);
+      }
+    };
+
+    loadData();
+  }, []);
+
   useCountUp({
     ref: "counter",
     end: 1234567,
@@ -133,359 +156,372 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  function splitIntoTwoWords(input) {
+    // Check if the input contains a space
+    if (input.includes(" ")) {
+      return input.split(" ", 2); // Split into an array of two words
+    }
+    return [input]; // Return the input as an array with a single word if no space
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
-      <div className="carousel-wrapper relative" id="home">
-        <Carousel
-          showThumbs={false}
-          autoPlay
-          infiniteLoop
-          stopOnHover={false}
-          showIndicators={false}
-          showStatus={false}
-          showArrows={false}
-          interval={3000}
-          swipeable={false}
-          emulateTouch={true}
-        >
-          {banners.map((banner, index) => (
-            <div key={index} className="relative">
-              <LazyLoad height={200}>
-                <img
-                  src={banner.imgUrl}
-                  alt={banner.title}
-                  className="w-full h-screen object-cover"
-                />
-              </LazyLoad>
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
-              {/* Title and description overlay */}
-              <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white ">
-                <div className="text-left lg:w-[70%] w-[90%]">
-                  <p className="text-[20px]   capitalize font-figtree">
-                    {banner.title}
-                  </p>
-                  <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
-                    {banner.heading}
-                  </h1>
-                  <div
-                    className="text-[20px] mb-10  capitalize font-figtree"
-                    dangerouslySetInnerHTML={{
-                      __html: banner.description,
-                    }}
-                  />
-
-                  <Button text={"READ MORE"} to={"/"} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      </div>
-
-      <section className="bg-gray-100 py-24" id="about-us">
-        <div className="w-[85%] mx-auto  ">
-          <div className="flex flex-col lg:flex-row items-center md:items-start gap-14">
-            {/* Left Section */}
-            <div className="lg:w-1/2 about-style-four">
-              <h2 className="text-2xl font-bold font-figtree text-[#104cba]">
-                ABOUT US
-              </h2>
-              <p className="my-8  text-4xl font-bold font-playfair">
-                We Provide Exceptionally Reliable Technical Services & Solution.
-              </p>
-              <p className="font-figtree text-gray-800 text-lg">
-                Mach International is a fast-growing customercentric technical
-                services and solutions provider, worldwide. We provide
-                exceptionally reliable technical services and solutions for
-                Second Party & Third Party Inspections, Hazardous Area
-                Inspections, Expediting (Desk & Field), Vendor Assessments,
-                Audits, Engineering, Project Management, Technical Staffing and
-                Procurement services in Oil & Gas, Marine, Petrochemical,
-                Renewable Energy, Power, Manufacturing, Infrastructure and other
-                associated industries.
-              </p>
-
-              <ul className="font-figtree text-gray-800 mt-10">
-                <li>Distinct &amp; Unique Operations Methodology</li>
-                <li>Efficient &amp; Cost Effective</li>
-                <li>100% Client Satisfaction</li>
-              </ul>
-            </div>
-
-            {/* Right Section */}
-            <div className="lg:w-1/2 ">
-              <div className="lg:w-[80%] w-full ml-auto relative">
-                <img
-                  src="https://img.freepik.com/free-photo/construction-site-silhouettes_1127-3253.jpg?t=st=1733738896~exp=1733742496~hmac=ecb0df6018f757857eb00a4fc20443ef8b32a9ebb27e2208a4eb730bf6493c66&w=900"
-                  alt="Business Representation"
-                  className="w-full md:h-[550px] h-[400px]  object-cover rounded-lg shadow-lg "
-                />
-
-                <div className="mt-12  font-figtree w-[80%]  grid  grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
-                  {/* Statistic Item */}
-                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
-                    <h3 className="text-4xl font-bold mb-2  text-white">
-                      <CountUp end={120} duration={2} enableScrollSpy />+
-                    </h3>
-                    <p className="text-white text-lg">Clients</p>
-                  </div>
-                  {/* Statistic Item */}
-                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
-                    <h3 className="text-4xl font-bold mb-2 text-white">
-                      <CountUp end={50} duration={2} enableScrollSpy />+
-                    </h3>
-                    <p className="text-white text-lg">Partners</p>
-                  </div>
-                  {/* Statistic Item */}
-                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
-                    <h3 className="text-4xl font-bold mb-2 text-white">
-                      <CountUp end={300} duration={2} enableScrollSpy />%
-                    </h3>
-                    <p className="text-white text-lg">Growth</p>
-                  </div>
-                  {/* Statistic Item */}
-                  <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5">
-                    <h3 className="text-4xl font-bold mb-2 text-white">
-                      <CountUp end={15} duration={2} enableScrollSpy />+
-                    </h3>
-                    <p className="text-white text-lg">Awards</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className=" w-[85%] mx-auto py-24">
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
-          Our Company Culture
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3   ">
-          <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
-            <img
-              src={mission}
-              alt=""
-              className="w-[80px] h-[80px] object-cover"
-            />
-
-            <h2 className="text-2xl font-bold font-figtree mt-6 ">
-              OUR <span className="text-[#104cba]">MISSION</span>
-            </h2>
-            <div className="flex items-center justify-center  py-6 ">
-              <div className="flex items-center space-x-1">
-                <div className="border-t border-[#104cba] w-20"></div>
-                <span className="text-[#104cba] text-lg">★</span>
-                <div className="border-t border-[#104cba] w-20"></div>
-              </div>
-            </div>
-
-            <img
-              src={mission}
-              alt=""
-              className="w-[30px] h-[30px] object-cover"
-            />
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-              ratione sed dolor voluptatibus! Quos veniam assumenda illo
-              voluptate necessitatibus tenetur, beatae mollitia dolores id
-              aliquam veritatis odit cum optio modi!
-            </p>
-          </div>
-
-          <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
-            <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
-              <img
-                src={vission}
-                alt=""
-                className="w-[90px] h-[90px] object-cover "
-              />
-
-              <h2 className="text-2xl font-bold font-figtree mt-6 ">
-                OUR <span className="text-[#104cba]">VISSION</span>
-              </h2>
-            </div>
-            <div className="flex items-center justify-center  py-6 ">
-              <div className="flex items-center space-x-1">
-                <div className="border-t border-[#104cba] w-20"></div>
-                <span className="text-[#104cba] text-lg">★</span>
-                <div className="border-t border-[#104cba] w-20"></div>
-              </div>
-            </div>
-            <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
-              <img
-                src={vission}
-                alt=""
-                className="w-[30px] h-[30px] object-cover"
-              />
-            </div>
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-              ratione sed dolor voluptatibus! Quos veniam assumenda illo
-              voluptate necessitatibus tenetur, beatae mollitia dolores id
-              aliquam veritatis odit cum optio modi!
-            </p>
-          </div>
-
-          <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
-            <img
-              src={value}
-              alt=""
-              className="w-[90px] h-[90px] object-cover"
-            />
-
-            <h2 className="text-2xl font-bold font-figtree mt-6 ">
-              OUR <span className="text-[#104cba]">VALUES</span>
-            </h2>
-            <div className="flex items-center justify-center  py-6 ">
-              <div className="flex items-center space-x-1">
-                <div className="border-t border-[#104cba] w-20"></div>
-                <span className="text-[#104cba] text-lg">★</span>
-                <div className="border-t border-[#104cba] w-20"></div>
-              </div>
-            </div>
-
-            <img
-              src={value}
-              alt=""
-              className="w-[30px] h-[30px] object-cover"
-            />
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-              ratione sed dolor voluptatibus! Quos veniam assumenda illo
-              voluptate necessitatibus tenetur, beatae mollitia dolores id
-              aliquam veritatis odit cum optio modi!
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-gray-100 py-24">
-        {" "}
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] w-[85%] mb-16">
-          What makes Mach International distinct from competitors?
-        </h2>
-        <div className="w-[85%] mx-auto flex justify-between items-center md:flex-row flex-col  gap-10 about-style-four ">
-          <div className="md:w-1/2">
-            <img
-              src={stand}
-              alt="Business Representation"
-              className="lg:w-[85%] h-[400px] object-cover rounded-lg shadow-lg"
-            />
-          </div>
-
-          <div className="md:w-1/2">
-            <ul className="font-figtree text-gray-800">
-              <li>Valued technical expertise across industries</li>
-              <li>Maximized value for cost</li>
-              <li>
-                Global Coverage through branch offices and associated offices
-                worldwide, even at remote locations
-              </li>
-              <li>Exhaustive commodity experience</li>
-              <li>Value added services of dedicated Technical Team</li>
-              <li>Support Services &amp; On Job Consultation</li>
-              <li>
-                We value open and honest communication, and strive to support
-                our clients to achieve their goals
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="lg:w-[80%] w-[85%] mx-auto py-24">
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto lg:w-[50%] w-[85%] mb-16">
-          Here’s what Mach International provides.
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center lg:gap-20 gap-6">
-          <ServiceCard
-            src={inspection}
-            title={"TECHNICAL SERVICES"}
-            desc={
-              " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
-            }
-            id={"tech-services"}
-          />
-          <ServiceCard
-            src={construction}
-            title={"MACH INFRA"}
-            desc={
-              " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum consequuntur ut enim soluta, placeat animi vel pariatur delectus, labore natus illum id eligendi magni dolorem  distinctio, laudantium beatae temporibus quas!"
-            }
-            id={"mach-infra"}
-          />
-        </div>
-      </section>
-
-      <section className="pb-24 bg-gray-100" id="core-value">
-        <div className="relative">
-          <img src={core} alt="" className="w-full h-[450px]  object-cover" />{" "}
-          <div
-            className="md:w-[75%] w-[85%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"
-            style={{
-              backgroundImage: `url(${corebg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+      {data && <MetaHelmet metaData={data.meta_data} />}
+      {data?.homeBanner?.length > 0 && (
+        <div className="carousel-wrapper relative" id="home">
+          <Carousel
+            showThumbs={false}
+            autoPlay
+            infiniteLoop
+            stopOnHover={false}
+            showIndicators={false}
+            showStatus={false}
+            showArrows={false}
+            interval={3000}
+            swipeable={false}
+            emulateTouch={true}
           >
-            <h2 className=" text-4xl font-bold font-playfair text-center   py-10">
-              Our Core Values
-            </h2>
-            <p className="text-lg mb-2 text-center font-playfair text-gray-800 md:px-16 px-6 pb-10">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Id deleniti a
-              molestiae fuga expedita, qui sunt illo perferendis eaque nam
-              nostrum quibusdam dicta reprehenderit magni officiis, vitae
-              asperiores similique ipsam. Dolores molestiae in distinctio!
-              Itaque delectus laborum enim ipsum porro? Tempore totam quos
-              officia reiciendis voluptate minus, sunt vitae modi error harum?
-            </p>
-          </div>
-        </div>
-        <div className="w-[85%] mx-auto mt-[200px]">
-          <div className="grid grid-cols-1 md:grid-cols-2    w-[70%] mx-auto gap-y-10 gap-x-20   ">
-            {Ourvalues.map((value, index) => (
-              <div key={index} className="flex items-start">
-                {/* Icon */}
-                <div className="text-2xl text-[#104cba] mr-4">➤</div>
-                {/* Content */}
-                <div>
-                  <h3 className="text-2xl font-playfair font-bold mb-2">
-                    {value.title}
-                  </h3>
-                  <p className="text-lg font-playfair text-gray-800">
-                    {value.text}
-                  </p>
+            {data.homeBanner.map((banner, index) => (
+              <div key={banner.id} className="relative">
+                <LazyLoad height={200}>
+                  <img
+                    src={banner.banner_url}
+                    alt={banner.title}
+                    className="w-full h-screen object-cover"
+                  />
+                </LazyLoad>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80"></div>
+                {/* Title and description overlay */}
+                <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white ">
+                  <div className="text-left lg:w-[70%] w-[90%]">
+                    <p className="text-[20px]   capitalize font-figtree">
+                      {banner.sub_title}
+                    </p>
+                    <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
+                      {banner.title}
+                    </h1>
+                    <div
+                      className="text-[20px] mb-10  capitalize font-figtree"
+                      dangerouslySetInnerHTML={{
+                        __html: banner.description,
+                      }}
+                    />
+
+                    <Button text={banner.button_text} to={banner.button_url} />
+                  </div>
                 </div>
               </div>
             ))}
-          </div>
+          </Carousel>
         </div>
-      </section>
+      )}
 
-      <section id="contact-us">
-        <ContactSection />
-      </section>
+      {data?.aboutUs && (
+        <section className="bg-gray-100 py-24" id="about-us">
+          <div className="w-[85%] mx-auto  ">
+            <div className="flex flex-col lg:flex-row items-center md:items-start gap-14">
+              {/* Left Section */}
+              <div className="lg:w-1/2 about-style-four">
+                <h2 className="text-2xl font-bold font-figtree text-[#104cba]">
+                  {data.aboutUs.title}
+                </h2>
+                <p className="my-8  text-4xl font-bold font-playfair">
+                  {data.aboutUs.sub_title}
+                </p>
+                <p className="font-figtree text-gray-800 text-lg">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data.aboutUs.description,
+                    }}
+                  />
+                </p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.aboutUs.alternate_description,
+                  }}
+                />
+              </div>
+
+              {/* Right Section */}
+              <div className="lg:w-1/2 ">
+                <div className="lg:w-[80%] w-full ml-auto relative">
+                  <img
+                    src={data.aboutUs.key_feature_bg_image_url}
+                    alt="Business Representation"
+                    className="w-full md:h-[550px] h-[400px]  object-cover rounded-lg shadow-lg "
+                  />
+
+                  <div className="mt-12  font-figtree w-[80%]  grid  grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
+                    {/* Statistic Item */}
+                    {data?.keyFeatures?.map((item) => (
+                      <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5" key={item.id}>
+                        <h3 className="text-4xl font-bold mb-2  text-white">
+                          <CountUp
+                            end={item.count}
+                            duration={2}
+                            enableScrollSpy
+                          />
+                          {item.symbol}
+                        </h3>
+                        <p className="text-white text-lg">{item.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data?.missionVisionValue && (
+        <section className=" w-[85%] mx-auto py-24">
+          <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] mb-16">
+            {data.missionVisionValue.main_title}
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3   ">
+            <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
+              <img
+                src={data.missionVisionValue.mission_image_url}
+                alt=""
+                className="w-[80px] h-[80px] object-cover"
+              />
+
+              <h2 className="text-2xl font-bold font-figtree mt-6 uppercase">
+                {splitIntoTwoWords(data.missionVisionValue.mission_title)[0]}{" "}
+                <span className="text-[#104cba]">
+                  {splitIntoTwoWords(data.missionVisionValue.mission_title)[1]}
+                </span>
+              </h2>
+              <div className="flex items-center justify-center  py-6 ">
+                <div className="flex items-center space-x-1">
+                  <div className="border-t border-[#104cba] w-20"></div>
+                  <span className="text-[#104cba] text-lg">★</span>
+                  <div className="border-t border-[#104cba] w-20"></div>
+                </div>
+              </div>
+
+              <img
+                src={data.missionVisionValue.mission_image_url}
+                alt=""
+                className="w-[30px] h-[30px] object-cover"
+              />
+              <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.missionVisionValue.mission,
+                  }}
+                />
+              </p>
+            </div>
+
+            <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
+              <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
+                <img
+                  src={data.missionVisionValue.vision_image_url}
+                  alt=""
+                  className="w-[90px] h-[90px] object-cover "
+                />
+
+                <h2 className="text-2xl font-bold font-figtree mt-6 uppercase">
+                  {splitIntoTwoWords(data.missionVisionValue.vision_title)[0]}{" "}
+                  <span className="text-[#104cba]">
+                    {splitIntoTwoWords(data.missionVisionValue.vision_title)[1]}
+                  </span>
+                </h2>
+              </div>
+              <div className="flex items-center justify-center  py-6 ">
+                <div className="flex items-center space-x-1">
+                  <div className="border-t border-[#104cba] w-20"></div>
+                  <span className="text-[#104cba] text-lg">★</span>
+                  <div className="border-t border-[#104cba] w-20"></div>
+                </div>
+              </div>
+              <div className="w-full flex justify-center flex-col items-center lg:border-x-2 border-gray-500">
+                <img
+                  src={data.missionVisionValue.vision_image_url}
+                  alt=""
+                  className="w-[30px] h-[30px] object-cover"
+                />
+              </div>
+              <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.missionVisionValue.vision,
+                  }}
+                />
+              </p>
+            </div>
+
+            <div className="flex justify-center flex-col items-center pt-3   hover:bg-[#eaf3ff] hover:shadow-lg transition duration-300">
+              <img
+                src={data.missionVisionValue.our_value_image_url}
+                alt=""
+                className="w-[90px] h-[90px] object-cover"
+              />
+
+              <h2 className="text-2xl font-bold font-figtree mt-6 uppercase">
+                {splitIntoTwoWords(data.missionVisionValue.our_values_title)[0]}{" "}
+                <span className="text-[#104cba]">
+                  {
+                    splitIntoTwoWords(
+                      data.missionVisionValue.our_values_title
+                    )[1]
+                  }
+                </span>
+              </h2>
+              <div className="flex items-center justify-center  py-6 ">
+                <div className="flex items-center space-x-1">
+                  <div className="border-t border-[#104cba] w-20"></div>
+                  <span className="text-[#104cba] text-lg">★</span>
+                  <div className="border-t border-[#104cba] w-20"></div>
+                </div>
+              </div>
+
+              <img
+                src={data.missionVisionValue.our_value_image_url}
+                alt=""
+                className="w-[30px] h-[30px] object-cover"
+              />
+              <p className="text-lg mb-2 text-center font-playfair text-gray-800 px-8 py-6">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.missionVisionValue.our_values,
+                  }}
+                />
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data?.specialities?.length > 0 && (
+        <section className="bg-gray-100 py-24">
+          {" "}
+          <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] w-[85%] mb-16">
+            {data?.specialityContent?.title}
+          </h2>
+          <div className="w-[85%] mx-auto flex justify-between items-center md:flex-row flex-col  gap-10 about-style-four ">
+            <div className="md:w-1/2">
+              <img
+                src={data?.specialityContent?.image_url}
+                alt="Business Representation"
+                className="lg:w-[85%] h-[400px] object-cover rounded-lg shadow-lg"
+              />
+            </div>
+
+            <div className="md:w-1/2">
+              <ul className="font-figtree text-gray-800">
+                {data?.specialities?.map((item) => (
+                  <li key={item.id}>{item.title}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {data?.specialities?.length > 0 && (
+        <section className="lg:w-[80%] w-[85%] mx-auto py-24">
+          <h2 className=" text-4xl font-bold font-playfair text-center mx-auto lg:w-[50%] w-[85%] mb-16">
+           {data?.siteData?.home_service_heading}
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center lg:gap-20 gap-6">
+            {data?.services?.map((item) => (
+              <ServiceCard
+                key={item.id}
+                src={item.thumbnail_image_url}
+                title={item.title}
+                desc={item.short_description}
+                id={item.short_url}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data?.corevalueContent && (
+        <section className="pb-24 bg-gray-100" id="core-value">
+          <div className="relative">
+            <img
+              src={data.corevalueContent.image_url}
+              alt=""
+              className="w-full h-[450px]  object-cover"
+            />{" "}
+            <div
+              className="md:w-[75%] w-[85%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"
+              style={{
+                backgroundImage: `url(${corebg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <h2 className=" text-4xl font-bold font-playfair text-center   py-10">
+                {data.corevalueContent.title}
+              </h2>
+              <p className="text-lg mb-2 text-center font-playfair text-gray-800 md:px-16 px-6 pb-10">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.corevalueContent.description,
+                  }}
+                />
+              </p>
+            </div>
+          </div>
+          <div className="w-[85%] mx-auto mt-[200px]">
+            <div className="grid grid-cols-1 md:grid-cols-2    w-[70%] mx-auto gap-y-10 gap-x-20   ">
+              {data.coreValue?.map((value, index) => (
+                <div key={value.id} className="flex items-start">
+                  {/* Icon */}
+                  <div className="text-2xl text-[#104cba] mr-4">➤</div>
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-2xl font-playfair font-bold mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-lg font-playfair text-gray-800">
+                      {value.sub_title}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {data?.contactUs && (
+        <section id="contact-us">
+          <ContactSection contact={data.contactUs} />
+        </section>
+      )}
 
       <section className="w-[85%] mx-auto pt-20  ">
         <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[60%] ">
           Our Branches
         </h2>
-        <img src={map} alt="" className="w-full   object-cover" />
+        <img
+          src={data?.contactUs?.world_map_url}
+          alt=""
+          className="w-full   object-cover"
+        />
       </section>
-
-      <section className="w-[85%] mx-auto pb-24">
-        <AddressCard addresses={addresses} />
-      </section>
-
+      {data?.branches?.length > 0 && (
+        <section className="w-[85%] mx-auto pb-24">
+          <AddressCard addresses={data.branches} />
+        </section>
+      )}
+{data?.contactUs && (
       <section>
         <div className="relative w-full h-[450px]">
           {/* Embedded Google Map */}
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14425.805545021738!2d55.4885815!3d25.32263!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5f5df14e533d%3A0x73cc61cd6d65a7e3!2sSharjah%20Research%20Technology%20and%20Innovation%20Park!5e0!3m2!1sen!2sin!4v1733476385069!5m2!1sen!2sin"
+            src={data.contactUs.map}
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -501,31 +537,30 @@ const Home = () => {
               Head Office
             </h2>
             <div className="font-figtree text-gray-800">
-              <p>Mach International (FZE)</p>
+              <p>{data.contactUs.head_office_title}</p>
               <p>
-                Block B - B14 -114, Sharjah Research Technology & Innovation
-                Park (SRTIP)
+               {data.contactUs.head_office_address}
               </p>
-              <p>P.O. Box 124510, Sharjah, United Arab Emirates</p>
+              
               <p>
-                <span className="font-bold">Ph:</span> +971 6 543 6774
+                <span className="font-bold">Ph:</span> {data.contactUs.head_office_phone}
               </p>
               <p>
-                <span className="font-bold">Mob:</span> +971 556 7500 19
+                <span className="font-bold">Mob:</span> {data.contactUs.head_office_mobile}
               </p>
               <p>
                 <span className="font-bold">Mail:</span>{" "}
                 <a
-                  href="mailto:info@machintl.com"
+                  href={`mailto:${data.contactUs.head_office_email_id}`}
                   className="text-blue-500 hover:underline"
                 >
-                  info@machintl.com
+                  {data.contactUs.head_office_email_id}
                 </a>
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </section>)}
     </div>
   );
 };

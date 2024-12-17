@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProjectCard = () => {
+const ProjectCard = ({project}) => {
   return (
     <div>
           <div className="relative flex flex-col justify-center overflow-hidden  ">
@@ -25,39 +25,42 @@ const ProjectCard = () => {
                 </span>
 
                 <h4 className="my-4 text-[22px] font-medium   transition-all duration-300 group-hover:text-white/90">
-                  Project Title
+                  {project?.title}
                 </h4>
 
                 <div className="space-y-6 text-lg leading-7 text-gray-700 transition-all duration-300 group-hover:text-white/90">
-                  <p>
-                    Perfect for learning how the framework works, prototyping a
-                    new idea, or creating a demo to share online.
-                  </p>
+                  <div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: project?.description,
+                    }}
+                  />
+                  </div>
 
                   {/* Key-value pairs */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
                       <span className="font-semibold mr-3">Client:</span>
                       <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                        Example Client{" "}
+                       {project?.client}
                       </span>
                     </div>
                     <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
                       <span className="font-semibold  mr-3">Cost:</span>
                       <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                        $1000
+                      {project?.cost}
                       </span>
                     </div>
                     <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
                       <span className="font-semibold  mr-3">Company:</span>
                       <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                        Example Corp
+                      {project?.company}
                       </span>
                     </div>
                     <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
                       <span className="font-semibold  mr-3">Period:</span>
                       <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                        3 months
+                      {project?.period}
                       </span>
                     </div>
                   </div>

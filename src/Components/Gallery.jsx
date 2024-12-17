@@ -19,22 +19,11 @@ const GalleryPosts = [
   // Add more blog posts as needed
 ];
 
-const Gallery = () => {
-  const [selectedTab, setSelectedTab] = useState("all");
-
-  const tabs = ["all", "Service Sectors", "QHSE", "Building Contract"];
-
-  const handleTabClick = (tab) => {
-    setSelectedTab(tab);
-  };
-
-  const filteredPosts = GalleryPosts.filter(
-    (post) => selectedTab === "all" || post.category === selectedTab
-  );
-
+const Gallery = ({gallery}) => {
+  
   return (
     <div>
-      <div className="flex flex-wrap gap-4 md:gap-0  mb-8">
+      {/* <div className="flex flex-wrap gap-4 md:gap-0  mb-8">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -48,7 +37,7 @@ const Gallery = () => {
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {/* Image Grid with Lightbox */}
       <SlideshowLightbox
@@ -57,13 +46,13 @@ const Gallery = () => {
         showThumbnails
         modalClose={"clickOutside"}
         framework="tailwind" // Optional: Use Tailwind classes for styling
-        images={filteredPosts?.map((image) => image.imageSrc)} // Pass the array of image URLs
+        images={gallery?.map((image) => image.image_url)} // Pass the array of image URLs
       >
-        {filteredPosts?.map((image, imageIndex) => (
+        {gallery?.map((image, imageIndex) => (
           <div key={imageIndex} className="photo-card h-[350px] rounded-lg group overflow-hidden">
             <img
               className=" object-cover w-full h-full shadow-md  transition-transform duration-500 group-hover:scale-110 "
-              src={image.imageSrc}
+              src={image.image_url}
               alt={image.id}
               data-lightboxjs="gallery-lightbox" // Identifier for Lightbox images
             />

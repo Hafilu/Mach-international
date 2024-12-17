@@ -3,26 +3,39 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import contactbg from "../assets/contactbg.jpg";
 import CountUp, { useCountUp } from "react-countup";
-
-const ContactSection = () => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { sendFormData } from "../Api/Api";
+const ContactSection = ({contact}) => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email_id: Yup.string().email("Invalid email").required("Email is required"),
     mobile: Yup.string().required("Number is required"),
 
     message: Yup.string().required("Message is required"),
   });
 
-  const initialValues = { name: "", email: "", message: "", mobile: "" };
+  const initialValues = { name: "", email_id: "", message: "", mobile: "" };
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log("Form Data:", values);
-    resetForm();
+  const handleSubmit = async(values, { resetForm }) => {
+    try {
+      console.log("Form 1 values:", values);
+
+      // Send the form data to the server
+      const result = await sendFormData(values);
+
+      // Display success toast
+      toast.success(result);
+
+      // Reset the form
+      resetForm();
+    } catch (error) {
+      // Display error toast
+      toast.error("Form submission failed!");
+      console.error("Form submission error:", error);
+    } 
   };
-  const stats = [
-    { value: "5", suffix: "K", label: "Field Personnel Worldwide" },
-    { value: "100", suffix: "%", label: "Positive Rating" },
-  ];
+   
   useCountUp({
     ref: "counter",
     end: 1234567,
@@ -33,7 +46,7 @@ const ContactSection = () => {
     <div
       className="relative bg-cover bg-center  h-max flex items-center justify-center"
       style={{
-        backgroundImage: `url(${contactbg})`,
+        backgroundImage: `url(${contact?.contact_form_bg_image_url})`,
       }}
     >
       {/* Black Overlay */}
@@ -44,43 +57,52 @@ const ContactSection = () => {
         {/* Left Section */}
         <div className="text-white lg:w-[60%]">
           <h2 className="text-4xl font-bold font-playfair mb-10">
-            Business Strategies
+            {contact?.contact_form_main_title}
           </h2>
           <h4 className="text-xl font-semibold   font-figtree mb-6">
-            Strategy & Change Management
+          {contact?.contact_form_title}
           </h4>
           <p className="text-base mb-6">
-            Research and recognize the emergence of new technologies, which
-            would disrupt what had been traditionally a very profitable business
-            model, analyze and adopt the same if it enhances the services &
-            solutions provided by Mach International
+          <div
+                  dangerouslySetInnerHTML={{
+                    __html: contact?.contact_form_description,
+                  }}
+                />
           </p>
           <h4 className="text-xl font-semibold   font-figtree mb-6">
-            Research & Analysis
+          {contact?.contact_form_alternate_title}
           </h4>
           <p className="text-base mb-6">
-            Analyze and consider how the use of new technologies would impact
-            the industry and Mach International’s services & business models.
+          <div
+                  dangerouslySetInnerHTML={{
+                    __html: contact?.contact_form_alternate_description,
+                  }}
+                />
           </p>
 
           <div className="flex items-center justify-start gap-4 py-8">
-            {stats.map((stat, index) => (
-              <React.Fragment key={index}>
+            
+                <div className="text-center border-e-[1px] pe-4">
+                  <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
+                    {" "}
+                    <CountUp end={contact?.counter} duration={2} enableScrollSpy />
+                    {contact?.counter_symbol}
+                  </h2>
+                  <p className="text-white font-figtree text-base">
+                    {contact?.counter_title}
+                  </p>
+                </div>
                 <div className="text-center">
                   <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
                     {" "}
-                    <CountUp end={stat.value} duration={2} enableScrollSpy />
-                    {stat.suffix}
+                    <CountUp end={contact?.second_counter} duration={2} enableScrollSpy />
+                    {contact?.second_counter_symbol}
                   </h2>
                   <p className="text-white font-figtree text-base">
-                    {stat.label}
+                    {contact?.second_counter_title}
                   </p>
                 </div>
-                {index < stats.length - 1 && (
-                  <div className="h-12 border-l border-gray-300 mx-6"></div> // Vertical line
-                )}
-              </React.Fragment>
-            ))}
+         
           </div>
         </div>
 
@@ -114,7 +136,7 @@ const ContactSection = () => {
                     Email
                   </label>
                   <Field
-                    name="email"
+                    name="email_id"
                     type="email"
                     className="w-full p-3 rounded-lg   text-white border   bg-white bg-opacity-20 backdrop-blur-md focus:outline-none  "
                   />
@@ -170,6 +192,8 @@ const ContactSection = () => {
           </Formik>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };
