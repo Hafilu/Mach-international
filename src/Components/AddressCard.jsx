@@ -46,7 +46,9 @@ const AddressCard = ({ addresses }) => {
     <div className="w-full overflow-hidden">
       <Slider {...settings}>
         {addresses?.map((item, index) => (
-          <div key={item.id} className="px-3"> {/* Add spacing between cards */}
+          <div key={item.id} className="px-3">
+            {" "}
+            {/* Add spacing between cards */}
             <div className="relative  w-full h-[220px] rounded-lg overflow-hidden border shadow-lg border-gray-300">
               {/* Left Section - Address */}
               <div className="  p-6 bg-white">
@@ -58,9 +60,11 @@ const AddressCard = ({ addresses }) => {
                 </p>
               </div>
               {/* Right Section - Flag */}
-              <img src={item.image_url} alt="" className="w-[130px]    object-contain absolute top-0 right-0"/>
-              
-               
+              <img
+                src={item.image_url}
+                alt=""
+                className="w-[130px]    object-contain absolute top-0 right-0"
+              />
             </div>
           </div>
         ))}

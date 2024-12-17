@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
 import LazyLoad from "react-lazyload";
-import Button from "../Components/Button";
-import banner2 from "../assets/banner2.jpg";
-import service1 from "../assets/service1.png";
-import service2 from "../assets/service2.png";
-import service3 from "../assets/service3.png";
-import service4 from "../assets/service4.png";
-import service5 from "../assets/service5.png";
-import service6 from "../assets/service6.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Gallery from "../Components/Gallery";
 import CertificationSlider from "../Components/CertificationSlider";
@@ -17,44 +9,6 @@ import { useParams } from "react-router-dom";
 import { fetchServiceData } from "../Api/Api";
 import Loader from "../Components/Loader";
 import MetaHelmet from "../Components/MetaData";
-const OurServices = [
-  {
-    title: "Engineering",
-    description:
-      "We provide a complete and cost-effective Engineering package to our clients in the Oil & Gas, Marine, Petrochemical, Renewable Energy, Power...",
-    image_url: service1,
-  },
-  {
-    title: "Second Party & Third Party Inspections",
-    description:
-      "Second Party (Client/Project Quality representatives) and Third Party (Independent) involves...  ",
-    image_url: service2,
-  },
-  {
-    title: "Shop & Desk Expediting",
-    description:
-      "Shop & Desk Expediting is performed to assess the status of design, document approvals, material availability, production status and adherence   ",
-    image_url: service3,
-  },
-  {
-    title: "Project Management",
-    description:
-      "We provide Project Management services for executing complex projects in Oil & Gas, Marine, Petrochemical...",
-    image_url: service4,
-  },
-  {
-    title: "Procurement Services",
-    description:
-      "We assist our clients in finding vendors that can reliably deliver results who will also work as trusted partners, who often require...",
-    image_url: service5,
-  },
-  {
-    title: "Vendor Assessments & Audits",
-    description:
-      "Vendor Assessment (Evaluation) Audits are done by performing a thorough independent assessment...",
-    image_url: service6,
-  },
-];
 
 const Services = () => {
   const { serviceId } = useParams();
@@ -67,10 +21,10 @@ const Services = () => {
     setIsModalOpen(true);
     setTimeout(() => setIsTransitioning(true), 10);
     setModalContent(() => {
-      return OurServices.find((item) => item.title === id);
+      return data?.service?.sub_services?.find((item) => item.title === id);
     });
   };
-
+  console.log(modalContent);
   const closeModal = () => {
     setIsTransitioning(false);
     setTimeout(() => setIsModalOpen(false), 300);
@@ -155,10 +109,10 @@ const Services = () => {
                   <img
                     src={service.thumbnail_image_url}
                     alt=""
-                    className="w-full h-[420px] object-cover"
+                    className="w-full h-[380px] object-cover"
                   />
 
-                  <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[420px] p-6 font-playfair ">
+                  <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[380px] p-6 font-playfair ">
                     <div>
                       <h3 className="mb-6 text-[20px]">{service.title}</h3>
                       <div className="text-lg text-gray-700">
@@ -197,22 +151,25 @@ const Services = () => {
           </div>
         </section>
       )}
- {data?.service?.gallery?.length > 0 && (
-      <section className="w-[85%] mx-auto pb-24">
-        <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
-          Our Gallery
-        </p>
+      {data?.service?.gallery?.length > 0 && (
+        <section className="w-[85%] mx-auto pb-24">
+          <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
+            Our Gallery
+          </p>
 
-        <Gallery gallery={data.service.gallery}/>
-      </section>)}
+          <Gallery gallery={data.service.gallery} />
+        </section>
+      )}
       {data?.service?.certifications?.length > 0 && (
-      <section className="w-[85%] mx-auto pb-24">
-        <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
-          Licenses and certifications
-        </p>
+        <section className="w-[85%] mx-auto pb-24">
+          <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
+            Licenses and certifications
+          </p>
 
-        <CertificationSlider Ourcertifications={data.service.certifications} />
-      </section>
+          <CertificationSlider
+            Ourcertifications={data.service.certifications}
+          />
+        </section>
       )}
       {data?.contactUs && (
         <section id="contact-us">
@@ -242,13 +199,17 @@ const Services = () => {
                 {modalContent.title}
               </h2>
               <img
-                src={modalContent.image_url}
+                src={modalContent.thumbnail_image_url}
                 alt=""
                 className="h-[200px] w-full rounded-lg object-cover"
               />
-              <p className="text-lg text-gray-800 mt-4">
-                {modalContent.description}
-              </p>
+              <div className="text-lg text-gray-800 mt-4">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: modalContent.description,
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

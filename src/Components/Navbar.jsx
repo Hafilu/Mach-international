@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { HashLink as NavLink } from "react-router-hash-link";
-const Navbar = () => {
+const Navbar = ({ menu }) => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -20,13 +20,18 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const Links = [
+  const BaseLinks = [
     { name: "HOME", link: "/" },
     { name: "GROUP", link: "/#about-us" },
-    { name: "TECHNICAL SERVICES", link: "/services/tech-services" },
-    { name: "MACH INFRA", link: "/services/mach-infra" },
-    { name: "CONTACT US", link: "/#contact-us" },
   ];
+
+  const serviceLinks = menu.map((item) => ({
+    name: item.title,
+    link: `/services/${item.short_url}`,
+  }));
+  const contactLink = { name: "CONTACT US", link: "/#contact-us" };
+
+  const Links = [...BaseLinks, ...serviceLinks, contactLink];
 
   return (
     <div
@@ -67,7 +72,7 @@ const Navbar = () => {
               <NavLink
                 smooth
                 to={link.link} // e.g., "/about#section-id"
-                className={`font-playfair hover:text-[#104cba] duration-500 ${
+                className={`font-playfair hover:text-[#104cba] duration-500 uppercase ${
                   isScrolled ? "text-black" : "lg:text-white"
                 }`}
               >

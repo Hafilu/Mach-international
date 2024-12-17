@@ -1,12 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import b1 from "../assets/certi1.jpeg";
-import b2 from "../assets/certi2.jpeg";
-import b3 from "../assets/certi3.jpeg";
-import b4 from "../assets/certi4.jpeg";
+
 import { SlideshowLightbox } from "lightbox.js-react";
-const CertificationSlider = ({Ourcertifications}) => {
+const CertificationSlider = ({ Ourcertifications }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -46,7 +43,7 @@ const CertificationSlider = ({Ourcertifications}) => {
       },
     ],
   };
-  
+
   return (
     <div className="w-full overflow-hidden">
       <Slider {...settings}>
@@ -56,7 +53,7 @@ const CertificationSlider = ({Ourcertifications}) => {
               className="w-full h-full "
               modalClose={"clickOutside"}
             >
-              <img src={item.image_url} alt=""   />
+              <img src={item.image_url} alt="" />
             </SlideshowLightbox>
           </div>
         ))}

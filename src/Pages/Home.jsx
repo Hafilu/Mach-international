@@ -1,17 +1,5 @@
 import React, { useEffect, useState } from "react";
-import banner1 from "../assets/banner1.jpg";
-import banner2 from "../assets/banner2.jpg";
-import banner3 from "../assets/banner3.jpg";
-import mission from "../assets/mission.png";
-import vission from "../assets/vission.png";
-import value from "../assets/value.png";
-import map from "../assets/map.png";
-import core from "../assets/core.jpg";
 import corebg from "../assets/business.jpg";
-
-import stand from "../assets/standout.jpg";
-import inspection from "../assets/inspection.jpg";
-import construction from "../assets/construction.jpg";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import LazyLoad from "react-lazyload";
@@ -24,100 +12,6 @@ import Loader from "../Components/Loader";
 import { fetchHomeData } from "../Api/Api";
 import MetaHelmet from "../Components/MetaData";
 
-const banners = [
-  {
-    id: 1,
-    imgUrl: banner3,
-    title: "",
-    heading: "Welcome To Mach International",
-    description:
-      "Your reliable partner for technical services & solutions, worldwide.",
-  },
-  {
-    id: 2,
-    imgUrl: banner2,
-    title: "What Makes Mach International",
-    heading: "Our Service Industry Sectors",
-    description:
-      "Oil & Gas, Marine, Petrochemical, Renewable Energy, Power, Manufacturing, Infrastructure and other associated industries.",
-  },
-  {
-    id: 3,
-    imgUrl: banner1,
-    title: "What Makes Mach International",
-    heading: "Distinct From Competitors?",
-    description:
-      "Our customer-centric ideals, proactive approach and commitment makes us stand out amidst competition. We assure complete peace and serenity to our customers through our distinct and unique operations methodology.",
-  },
-];
-
-const Ourvalues = [
-  { title: "Customer Service Excellence", text: "Duis aute irure dolor in." },
-  { title: "Sustainability", text: "Duis aute irure dolor in." },
-  { title: "Empowerment", text: "Duis aute irure dolor in." },
-  { title: "Integrity", text: "Duis aute irure dolor in." },
-
-  { title: "Accountability", text: "Duis aute irure dolor in." },
-  { title: "Transparency", text: "Duis aute irure dolor in." },
-];
-const addresses = [
-  {
-    flag: "https://flagcdn.com/ca.svg", // Canada Flag URL
-    country: "Canada",
-    address: `Mach International
-500 Stone Church Road East
-Hamilton L8W3X5
-ON, Canada`,
-  },
-  {
-    flag: "https://flagcdn.com/us.svg", // USA Flag URL
-    country: "USA",
-    address: `Mach International
-B12, Wilmington,
-28401, North Carolina
-United States of America`,
-  },
-  {
-    flag: "https://flagcdn.com/gb.svg", // UK Flag URL
-    country: "UK",
-    address: `Mach International
-Mere End, Knutsford,
-WA 16 6QU, Manchester,
-United Kingdom`,
-  },
-  {
-    flag: "https://flagcdn.com/my.svg", // Malaysia Flag URL
-    country: "Malaysia",
-    address: `Mach International
-Taman Sri Andalas
-41200 Klang,
-Selangor, Malaysia`,
-  },
-  {
-    flag: "https://flagcdn.com/au.svg", // Australia Flag URL
-    country: "Australia",
-    address: `Mach International
-2/21 Station RD
-Oak Park 3046,
-Melbourne, Australia`,
-  },
-  {
-    flag: "https://flagcdn.com/om.svg", // Oman Flag URL
-    country: "Oman",
-    address: `Mach International
-Sohar,
-Postal Code: 311
-Sultanate of Oman`,
-  },
-  {
-    flag: "https://flagcdn.com/in.svg", // India Flag URL
-    country: "India",
-    address: `Mach International
-Crimson Layout
-Krishnakuteeer Road,
-Whitefield, Bengaluru, India`,
-  },
-];
 const Home = () => {
   const [data, setData] = useState(null);
 
@@ -145,17 +39,7 @@ const Home = () => {
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
   });
-
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+ 
 
   function splitIntoTwoWords(input) {
     // Check if the input contains a space
@@ -259,7 +143,10 @@ const Home = () => {
                   <div className="mt-12  font-figtree w-[80%]  grid  grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
                     {/* Statistic Item */}
                     {data?.keyFeatures?.map((item) => (
-                      <div className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5" key={item.id}>
+                      <div
+                        className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5"
+                        key={item.id}
+                      >
                         <h3 className="text-4xl font-bold mb-2  text-white">
                           <CountUp
                             end={item.count}
@@ -429,7 +316,7 @@ const Home = () => {
       {data?.specialities?.length > 0 && (
         <section className="lg:w-[80%] w-[85%] mx-auto py-24">
           <h2 className=" text-4xl font-bold font-playfair text-center mx-auto lg:w-[50%] w-[85%] mb-16">
-           {data?.siteData?.home_service_heading}
+            {data?.siteData?.home_service_heading}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center lg:gap-20 gap-6">
@@ -516,51 +403,52 @@ const Home = () => {
           <AddressCard addresses={data.branches} />
         </section>
       )}
-{data?.contactUs && (
-      <section>
-        <div className="relative w-full h-[450px]">
-          {/* Embedded Google Map */}
-          <iframe
-            src={data.contactUs.map}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute top-0 left-0 w-full h-full"
-          ></iframe>
+      {data?.contactUs && (
+        <section>
+          <div className="relative w-full h-[450px]">
+            {/* Embedded Google Map */}
+            <iframe
+              src={data.contactUs.map}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
 
-          {/* Address Card */}
-          <div className="absolute md:top-4 md:right-4 bottom-3 h-min bg-white p-6 rounded-lg shadow-lg max-w-sm">
-            <h2 className="text-2xl font-playfair font-bold mb-2">
-              Head Office
-            </h2>
-            <div className="font-figtree text-gray-800">
-              <p>{data.contactUs.head_office_title}</p>
-              <p>
-               {data.contactUs.head_office_address}
-              </p>
-              
-              <p>
-                <span className="font-bold">Ph:</span> {data.contactUs.head_office_phone}
-              </p>
-              <p>
-                <span className="font-bold">Mob:</span> {data.contactUs.head_office_mobile}
-              </p>
-              <p>
-                <span className="font-bold">Mail:</span>{" "}
-                <a
-                  href={`mailto:${data.contactUs.head_office_email_id}`}
-                  className="text-blue-500 hover:underline"
-                >
-                  {data.contactUs.head_office_email_id}
-                </a>
-              </p>
+            {/* Address Card */}
+            <div className="absolute md:top-4 md:right-4 bottom-3 h-min bg-white p-6 rounded-lg shadow-lg max-w-sm">
+              <h2 className="text-2xl font-playfair font-bold mb-2">
+                Head Office
+              </h2>
+              <div className="font-figtree text-gray-800">
+                <p>{data.contactUs.head_office_title}</p>
+                <p>{data.contactUs.head_office_address}</p>
+
+                <p>
+                  <span className="font-bold">Ph:</span>{" "}
+                  {data.contactUs.head_office_phone}
+                </p>
+                <p>
+                  <span className="font-bold">Mob:</span>{" "}
+                  {data.contactUs.head_office_mobile}
+                </p>
+                <p>
+                  <span className="font-bold">Mail:</span>{" "}
+                  <a
+                    href={`mailto:${data.contactUs.head_office_email_id}`}
+                    className="text-blue-500 hover:underline"
+                  >
+                    {data.contactUs.head_office_email_id}
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>)}
+        </section>
+      )}
     </div>
   );
 };

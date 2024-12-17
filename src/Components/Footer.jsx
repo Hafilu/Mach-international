@@ -7,15 +7,20 @@ import logo from "../assets/logo.png";
 import footerbg from "../assets/footerbg.png";
 import { HashLink as NavLink } from "react-router-hash-link";
 
-const Links = [
-  { name: "HOME", link: "/" },
-  { name: "GROUP", link: "/#about-us" },
-  { name: "TECHNICAL SERVICES", link: "/services/tech-services" },
-  { name: "MACH INFRA", link: "/services/mach-infra" },
-  { name: "CONTACT US", link: "/#contact-us" },
-];
+const Footer = ({ data, menu }) => {
+  const BaseLinks = [
+    { name: "HOME", link: "/" },
+    { name: "GROUP", link: "/#about-us" },
+  ];
 
-const Footer = ({ data }) => {
+  const serviceLinks = menu.map((item) => ({
+    name: item.title,
+    link: `/services/${item.short_url}`,
+  }));
+  const contactLink = { name: "CONTACT US", link: "/#contact-us" };
+
+  const Links = [...BaseLinks, ...serviceLinks, contactLink];
+
   return (
     <footer className="relative  text-black">
       {/* Top Section */}
@@ -101,9 +106,8 @@ const Footer = ({ data }) => {
       <div className="border-t-[1px]">
         <div className=" w-[85%] font-figtree py-4 mx-auto 6 flex flex-col md:flex-row items-center justify-between">
           <p className="text-lg  ">
-            © {new Date().getFullYear()} {data?.copyright_text}  
+            © {new Date().getFullYear()} {data?.copyright_text}
           </p>
-         
         </div>
       </div>
 

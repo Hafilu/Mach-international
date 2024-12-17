@@ -6,7 +6,7 @@ import CountUp, { useCountUp } from "react-countup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { sendFormData } from "../Api/Api";
-const ContactSection = ({contact}) => {
+const ContactSection = ({ contact }) => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
     email_id: Yup.string().email("Invalid email").required("Email is required"),
@@ -17,7 +17,7 @@ const ContactSection = ({contact}) => {
 
   const initialValues = { name: "", email_id: "", message: "", mobile: "" };
 
-  const handleSubmit = async(values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     try {
       console.log("Form 1 values:", values);
 
@@ -33,9 +33,9 @@ const ContactSection = ({contact}) => {
       // Display error toast
       toast.error("Form submission failed!");
       console.error("Form submission error:", error);
-    } 
+    }
   };
-   
+
   useCountUp({
     ref: "counter",
     end: 1234567,
@@ -60,49 +60,51 @@ const ContactSection = ({contact}) => {
             {contact?.contact_form_main_title}
           </h2>
           <h4 className="text-xl font-semibold   font-figtree mb-6">
-          {contact?.contact_form_title}
+            {contact?.contact_form_title}
           </h4>
           <p className="text-base mb-6">
-          <div
-                  dangerouslySetInnerHTML={{
-                    __html: contact?.contact_form_description,
-                  }}
-                />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: contact?.contact_form_description,
+              }}
+            />
           </p>
           <h4 className="text-xl font-semibold   font-figtree mb-6">
-          {contact?.contact_form_alternate_title}
+            {contact?.contact_form_alternate_title}
           </h4>
           <p className="text-base mb-6">
-          <div
-                  dangerouslySetInnerHTML={{
-                    __html: contact?.contact_form_alternate_description,
-                  }}
-                />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: contact?.contact_form_alternate_description,
+              }}
+            />
           </p>
 
           <div className="flex items-center justify-start gap-4 py-8">
-            
-                <div className="text-center border-e-[1px] pe-4">
-                  <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
-                    {" "}
-                    <CountUp end={contact?.counter} duration={2} enableScrollSpy />
-                    {contact?.counter_symbol}
-                  </h2>
-                  <p className="text-white font-figtree text-base">
-                    {contact?.counter_title}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
-                    {" "}
-                    <CountUp end={contact?.second_counter} duration={2} enableScrollSpy />
-                    {contact?.second_counter_symbol}
-                  </h2>
-                  <p className="text-white font-figtree text-base">
-                    {contact?.second_counter_title}
-                  </p>
-                </div>
-         
+            <div className="text-center border-e-[1px] pe-4">
+              <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
+                {" "}
+                <CountUp end={contact?.counter} duration={2} enableScrollSpy />
+                {contact?.counter_symbol}
+              </h2>
+              <p className="text-white font-figtree text-base">
+                {contact?.counter_title}
+              </p>
+            </div>
+            <div className="text-center">
+              <h2 className="text-5xl font-bold font-playfair text-[#104cba]">
+                {" "}
+                <CountUp
+                  end={contact?.second_counter}
+                  duration={2}
+                  enableScrollSpy
+                />
+                {contact?.second_counter_symbol}
+              </h2>
+              <p className="text-white font-figtree text-base">
+                {contact?.second_counter_title}
+              </p>
+            </div>
           </div>
         </div>
 
