@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
+import whitelogo from "../assets/white-logo.png";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { HashLink as NavLink } from "react-router-hash-link";
 const Navbar = ({ menu }) => {
@@ -43,7 +44,7 @@ const Navbar = ({ menu }) => {
         {/* Logo Section */}
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
           <img
-            src={logo}
+            src={ isScrolled ? logo : whitelogo}
             alt="logo"
             className="w-[200px] h-[70px] object-contain"
           />
