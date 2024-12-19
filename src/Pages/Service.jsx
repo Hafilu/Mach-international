@@ -203,7 +203,7 @@ const Services = () => {
                 alt=""
                 className="h-[200px] w-full rounded-lg object-cover"
               />
-              <div className="text-lg text-gray-800 mt-4">
+              <div className="text-lg text-gray-800 mt-4 font-playfair">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: modalContent.description,
