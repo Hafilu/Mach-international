@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 const AddressCard = ({ addresses }) => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     swipeToSlide: true,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -63,7 +63,7 @@ const AddressCard = ({ addresses }) => {
               <img
                 src={item.image_url}
                 alt=""
-                className="w-[130px]    object-contain absolute top-0 right-0"
+                className="w-[130px] h-[70px]   object-cover absolute top-0 right-0"
               />
             </div>
           </div>

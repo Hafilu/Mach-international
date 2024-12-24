@@ -4,8 +4,8 @@ const ProjectCard = ({ project }) => {
   return (
     <div>
       <div className="relative flex flex-col justify-center overflow-hidden  ">
-        <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-lg   transition-all duration-300 hover:-translate-y-1 rounded-lg border   ">
-          <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-[#104cba] transition-all duration-300 group-hover:scale-[15]"></span>
+        <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-6 pb-8 shadow-lg min-h-[450px]  transition-all duration-300 hover:-translate-y-1 rounded-lg border   ">
+          <span className="absolute top-6 z-0 h-20 w-20 rounded-full bg-[#104cba] transition-all duration-300 group-hover:scale-[15]"></span>
           <div className="relative z-10 mx-auto max-w-md">
             <span className="grid h-20 w-20 place-items-center rounded-full bg-sky-500 transition-all duration-300 group-hover:bg-sky-600">
               <svg
@@ -39,28 +39,28 @@ const ProjectCard = ({ project }) => {
 
               {/* Key-value pairs */}
               <div className="space-y-2">
-                <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                  <span className="font-semibold mr-3">Client:</span>
-                  <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                <div className="flex justify-between gap-6 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                  <span className="font-semibold ">Client:</span>
+                  <span className="text-gray-600 transition-all duration-300 text-end group-hover:text-white/90">
                     {project?.client}
                   </span>
                 </div>
-                <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                  <span className="font-semibold  mr-3">Cost:</span>
-                  <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                <div className="flex justify-between gap-6 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                  <span className="font-semibold  ">Cost:</span>
+                  <span className="text-gray-600 transition-all duration-300 text-end group-hover:text-white/90">
                     {project?.cost}
                   </span>
                 </div>
-                <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                  <span className="font-semibold  mr-3">Company:</span>
-                  <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                <div className="flex justify-between gap-6 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                  <span className="font-semibold  ">Contractor:</span>
+                  <span className="text-gray-600 transition-all duration-300 text-end group-hover:text-white/90">
                     {project?.company}
                   </span>
                 </div>
-                <div className="flex justify-between text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                  <span className="font-semibold  mr-3">Period:</span>
-                  <span className="text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                    {project?.period}
+                <div className="flex justify-between gap-6 text-gray-600 transition-all duration-300 group-hover:text-white/90">
+                  <span className="font-semibold  ">Scope:</span>
+                  <span className="text-gray-600 transition-all duration-300 text-end group-hover:text-white/90">
+                  {project?.period}
                   </span>
                 </div>
               </div>

@@ -28,7 +28,7 @@ const Footer = ({ data, menu }) => {
         {/* Logo and Social Media */}
         <div>
           <img
-            src={logo}
+            src={data.footer_logo_url}
             alt=""
             className="w-[250px] h-[80px] object-contain"
           />

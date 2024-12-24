@@ -9,6 +9,9 @@ import { useParams } from "react-router-dom";
 import { fetchServiceData } from "../Api/Api";
 import Loader from "../Components/Loader";
 import MetaHelmet from "../Components/MetaData";
+import AboutSection from "../Components/AboutSection";
+import Specialities from "../Components/Specialities";
+import CoreValues from "../Components/CoreValues";
 
 const Services = () => {
   const { serviceId } = useParams();
@@ -82,6 +85,12 @@ const Services = () => {
         </div>
       )}
 
+      {data?.aboutUs?.description && (
+        <section className="bg-gray-100 py-24">
+          <AboutSection data={data} pageType={'service'} />
+        </section>
+      )}
+
       {data?.service && (
         <section className="w-[85%] mx-auto py-24">
           <p className="mb-8 lg:w-[50%] md:w-[70%] mx-auto  text-4xl text-center font-bold font-playfair">
@@ -100,7 +109,7 @@ const Services = () => {
       {data?.service?.sub_services?.length > 0 && (
         <section className="w-[85%] mx-auto pb-24">
           <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-            Our Services
+            Our Core Service Areas
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
             {data.service.sub_services.map((service, index) => (
@@ -139,10 +148,16 @@ const Services = () => {
         </section>
       )}
 
+      {data?.specialities?.length > 0 && (
+        <section className="bg-gray-100 py-24">
+          <Specialities data={data} />
+        </section>
+      )}
+
       {data?.service?.projects?.length > 0 && (
         <section className="w-[85%] mx-auto pb-24 font-playfair">
           <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-            Projects Completed
+           List Of Projects Completed
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
             {data.service.projects.map((project, index) => (
@@ -151,8 +166,15 @@ const Services = () => {
           </div>
         </section>
       )}
+
+      {data?.corevalueContent && (
+        <section className="pb-24 bg-gray-100">
+          <CoreValues data={data} pageType={'service'} />
+        </section>
+      )}
+
       {data?.service?.gallery?.length > 0 && (
-        <section className="w-[85%] mx-auto pb-24">
+        <section className="w-[85%] mx-auto py-24">
           <p className="mb-16  mx-auto  text-4xl text-center  font-bold font-playfair">
             Our Gallery
           </p>
@@ -171,6 +193,20 @@ const Services = () => {
           />
         </section>
       )}
+      {data?.contactUs?.org_chart_url && (
+        <section className="w-[85%] mx-auto    ">
+          <p className="mb-12  mx-auto  text-4xl text-center  font-bold font-playfair">
+            Our Organization Chart
+          </p>
+
+          <img
+            src={data?.contactUs?.org_chart_url}
+            alt=""
+            className="w-full mb-6  object-cover"
+          />
+        </section>
+      )}
+
       {data?.contactUs && (
         <section id="contact-us">
           <ContactSection contact={data.contactUs} />

@@ -24,7 +24,7 @@ function App() {
   }, []);
   return (
     <>
-      {data?.menus && <Navbar menu={data?.menus} />}
+      {data?.menus && <Navbar menu={data?.menus} site_info={data?.site_info} />}
 
       {/*Implementing Routes for respective Path */}
       <Routes>

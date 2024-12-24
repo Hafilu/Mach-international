@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import corebg from "../assets/business.jpg";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from "react-lazyload";
 import Button from "../Components/Button";
 import CountUp, { useCountUp } from "react-countup";
@@ -11,6 +11,9 @@ import AddressCard from "../Components/AddressCard";
 import Loader from "../Components/Loader";
 import { fetchHomeData } from "../Api/Api";
 import MetaHelmet from "../Components/MetaData";
+import AboutSection from "../Components/AboutSection";
+import CoreValues from "../Components/CoreValues";
+import Specialities from "../Components/Specialities";
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -39,7 +42,19 @@ const Home = () => {
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
   });
- 
+
+  const settings = {
+    dots: false,
+    arrows: false,
+    autoplay: true,
+    infinite: true,
+    speed: 600,
+    autoplaySpeed: 3000,
+    pauseOnHover: false,
+    swipe: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   function splitIntoTwoWords(input) {
     // Check if the input contains a space
@@ -57,19 +72,8 @@ const Home = () => {
       {data && <MetaHelmet metaData={data.meta_data} />}
       {data?.homeBanner?.length > 0 && (
         <div className="carousel-wrapper relative" id="home">
-          <Carousel
-            showThumbs={false}
-            autoPlay
-            infiniteLoop
-            stopOnHover={false}
-            showIndicators={false}
-            showStatus={false}
-            showArrows={false}
-            interval={3000}
-            swipeable={false}
-            emulateTouch={true}
-          >
-            {data.homeBanner.map((banner, index) => (
+          <Slider {...settings}>
+            {data.homeBanner.map((banner) => (
               <div key={banner.id} className="relative">
                 <LazyLoad height={200}>
                   <img
@@ -83,86 +87,35 @@ const Home = () => {
                 {/* Title and description overlay */}
                 <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white ">
                   <div className="text-left lg:w-[70%] w-[90%]">
-                    <p className="text-[20px]   capitalize font-figtree">
+                    <p className="text-[20px] capitalize font-figtree">
                       {banner.sub_title}
                     </p>
                     <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
                       {banner.title}
                     </h1>
                     <div
-                      className="text-[20px] mb-10  capitalize font-figtree"
+                      className="text-[20px] mb-10 capitalize font-figtree"
                       dangerouslySetInnerHTML={{
                         __html: banner.description,
                       }}
                     />
-
-                    <Button text={banner.button_text} to={banner.button_url} />
+                    {banner.button_text && (
+                      <Button
+                        text={banner.button_text}
+                        to={banner.button_url}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </div>
       )}
 
       {data?.aboutUs && (
         <section className="bg-gray-100 py-24" id="about-us">
-          <div className="w-[85%] mx-auto  ">
-            <div className="flex flex-col lg:flex-row items-center md:items-start gap-14">
-              {/* Left Section */}
-              <div className="lg:w-1/2 about-style-four">
-                <h2 className="text-2xl font-bold font-figtree text-[#104cba]">
-                  {data.aboutUs.title}
-                </h2>
-                <p className="my-8  text-4xl font-bold font-playfair">
-                  {data.aboutUs.sub_title}
-                </p>
-                <p className="font-figtree text-gray-800 text-lg">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.aboutUs.description,
-                    }}
-                  />
-                </p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: data.aboutUs.alternate_description,
-                  }}
-                />
-              </div>
-
-              {/* Right Section */}
-              <div className="lg:w-1/2 ">
-                <div className="lg:w-[80%] w-full ml-auto relative">
-                  <img
-                    src={data.aboutUs.key_feature_bg_image_url}
-                    alt="Business Representation"
-                    className="w-full md:h-[550px] h-[400px]  object-cover rounded-lg shadow-lg "
-                  />
-
-                  <div className="mt-12  font-figtree w-[80%]  grid  grid-cols-2 absolute bottom-[50px] left-1/2 transform -translate-x-1/2 gap-6   text-center">
-                    {/* Statistic Item */}
-                    {data?.keyFeatures?.map((item) => (
-                      <div
-                        className="bg-white bg-opacity-20 backdrop-blur-md  rounded-lg p-5"
-                        key={item.id}
-                      >
-                        <h3 className="text-4xl font-bold mb-2  text-white">
-                          <CountUp
-                            end={item.count}
-                            duration={2}
-                            enableScrollSpy
-                          />
-                          {item.symbol}
-                        </h3>
-                        <p className="text-white text-lg">{item.title}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <AboutSection data={data} />
         </section>
       )}
 
@@ -289,31 +242,11 @@ const Home = () => {
 
       {data?.specialities?.length > 0 && (
         <section className="bg-gray-100 py-24">
-          {" "}
-          <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[50%] w-[85%] mb-16">
-            {data?.specialityContent?.title}
-          </h2>
-          <div className="w-[85%] mx-auto flex justify-between items-center md:flex-row flex-col  gap-10 about-style-four ">
-            <div className="md:w-1/2">
-              <img
-                src={data?.specialityContent?.image_url}
-                alt="Business Representation"
-                className="lg:w-[85%] h-[400px] object-cover rounded-lg shadow-lg"
-              />
-            </div>
-
-            <div className="md:w-1/2">
-              <ul className="font-figtree text-gray-800">
-                {data?.specialities?.map((item) => (
-                  <li key={item.id}>{item.title}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <Specialities data={data} />
         </section>
       )}
 
-      {data?.specialities?.length > 0 && (
+      {data?.services?.length > 0 && (
         <section className="lg:w-[80%] w-[85%] mx-auto py-24">
           <h2 className=" text-4xl font-bold font-playfair text-center mx-auto lg:w-[50%] w-[85%] mb-16">
             {data?.siteData?.home_service_heading}
@@ -335,51 +268,7 @@ const Home = () => {
 
       {data?.corevalueContent && (
         <section className="pb-24 bg-gray-100" id="core-value">
-          <div className="relative">
-            <img
-              src={data.corevalueContent.image_url}
-              alt=""
-              className="w-full h-[450px]  object-cover"
-            />{" "}
-            <div
-              className="md:w-[75%] w-[85%] bg-white rounded-lg shadow-md absolute bottom-[-150px] left-1/2 transform -translate-x-1/2 z-10"
-              style={{
-                backgroundImage: `url(${corebg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <h2 className=" text-4xl font-bold font-playfair text-center   py-10">
-                {data.corevalueContent.title}
-              </h2>
-              <p className="text-lg mb-2 text-center font-playfair text-gray-800 md:px-16 px-6 pb-10">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: data.corevalueContent.description,
-                  }}
-                />
-              </p>
-            </div>
-          </div>
-          <div className="w-[85%] mx-auto mt-[200px]">
-            <div className="grid grid-cols-1 md:grid-cols-2    w-[70%] mx-auto gap-y-10 gap-x-20   ">
-              {data.coreValue?.map((value, index) => (
-                <div key={value.id} className="flex items-start">
-                  {/* Icon */}
-                  <div className="text-2xl text-[#104cba] mr-4">➤</div>
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-2xl font-playfair font-bold mb-2">
-                      {value.title}
-                    </h3>
-                    <p className="text-lg font-playfair text-gray-800">
-                      {value.sub_title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <CoreValues data={data} />
         </section>
       )}
       {data?.contactUs && (
@@ -389,13 +278,10 @@ const Home = () => {
       )}
 
       <section className="w-[85%] mx-auto pt-20  ">
-        <h2 className=" text-4xl font-bold font-playfair text-center mx-auto md:w-[60%] ">
-          Our Branches
-        </h2>
         <img
           src={data?.contactUs?.world_map_url}
           alt=""
-          className="w-full   object-cover"
+          className="w-full mb-6  object-cover"
         />
       </section>
       {data?.branches?.length > 0 && (
