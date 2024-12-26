@@ -22,16 +22,18 @@ function App() {
 
     loadData();
   }, []);
+
+ 
   return (
     <>
       {data?.menus && <Navbar menu={data?.menus} site_info={data?.site_info} />}
 
       {/*Implementing Routes for respective Path */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services/:serviceId" element={<Services />} />
+        <Route path="/" element={<Home footer_info={data} />} />
+        <Route path="/services/:serviceId" element={<Services  footer_info={data}/>} />
       </Routes>
-      {data?.site_info && <Footer data={data?.site_info} menu={data?.menus} />}
+      
     </>
   );
 }

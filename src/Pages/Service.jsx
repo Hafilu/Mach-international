@@ -12,8 +12,9 @@ import MetaHelmet from "../Components/MetaData";
 import AboutSection from "../Components/AboutSection";
 import Specialities from "../Components/Specialities";
 import CoreValues from "../Components/CoreValues";
+import Footer from "../Components/Footer";
 
-const Services = () => {
+const Services = ({footer_info}) => {
   const { serviceId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -27,7 +28,7 @@ const Services = () => {
       return data?.service?.sub_services?.find((item) => item.title === id);
     });
   };
-  console.log(modalContent);
+ 
   const closeModal = () => {
     setIsTransitioning(false);
     setTimeout(() => setIsModalOpen(false), 300);
@@ -91,8 +92,8 @@ const Services = () => {
         </section>
       )}
 
-      {data?.service && (
-        <section className="w-[85%] mx-auto py-24">
+      {data?.service?.description && (
+        <section className="w-[85%] mx-auto pt-24">
           <p className="mb-8 lg:w-[50%] md:w-[70%] mx-auto  text-4xl text-center font-bold font-playfair">
             {data.service.inner_title}
           </p>
@@ -107,9 +108,9 @@ const Services = () => {
       )}
 
       {data?.service?.sub_services?.length > 0 && (
-        <section className="w-[85%] mx-auto pb-24">
+        <section className="w-[85%] mx-auto pt-24">
           <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-            Our Core Service Areas
+            {data.service.core_service_area_title}
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
             {data.service.sub_services.map((service, index) => (
@@ -155,7 +156,7 @@ const Services = () => {
       )}
 
       {data?.service?.projects?.length > 0 && (
-        <section className="w-[85%] mx-auto pb-24 font-playfair">
+        <section className="w-[85%] mx-auto py-24 font-playfair">
           <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
            List Of Projects Completed
           </p>
@@ -193,7 +194,7 @@ const Services = () => {
           />
         </section>
       )}
-      {data?.contactUs?.org_chart_url && (
+      {data?.service?.org_chart_enable && (
         <section className="w-[85%] mx-auto    ">
           <p className="mb-12  mx-auto  text-4xl text-center  font-bold font-playfair">
             Our Organization Chart
@@ -207,11 +208,7 @@ const Services = () => {
         </section>
       )}
 
-      {data?.contactUs && (
-        <section id="contact-us">
-          <ContactSection contact={data.contactUs} />
-        </section>
-      )}
+      
 
       {isModalOpen && (
         <div
@@ -250,6 +247,7 @@ const Services = () => {
           </div>
         </div>
       )}
+      {footer_info &&(<Footer data={ footer_info?.site_info} menu={footer_info?.menus} address={data?.service_address} />)}
     </div>
   );
 };

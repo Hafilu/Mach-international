@@ -7,13 +7,14 @@ import logo from "../assets/logo.png";
 import footerbg from "../assets/footerbg.png";
 import { HashLink as NavLink } from "react-router-hash-link";
 
-const Footer = ({ data, menu }) => {
+const Footer = ({ data, menu ,address}) => {
+ 
   const BaseLinks = [
     { name: "HOME", link: "/" },
     { name: "GROUP", link: "/#about-us" },
   ];
 
-  const serviceLinks = menu.map((item) => ({
+  const serviceLinks = menu?.map((item) => ({
     name: item.title,
     link: `/services/${item.short_url}`,
   }));
@@ -87,16 +88,16 @@ const Footer = ({ data, menu }) => {
         <div>
           <h3 className="text-xl font-playfair font-bold mb-4">Contact Us</h3>
           <p className="text-lg font-figtree">
-            {data?.address} <br />
+            { address ? address.address : data?.address} <br />
             <span className="font-bold">Mail:</span>{" "}
             <a
-              href={`mailto:${data?.email_id}`}
+              href={`mailto:${address ? address.email_id : data?.email_id}`}
               className="text-blue-500 hover:underline"
             >
               {data?.email_id}
             </a>{" "}
             <br />
-            <span className="font-bold">Phone:</span> {data?.phone_number}
+            <span className="font-bold">Phone:</span> {address ? address.phone_number : data?.phone_number}
           </p>
         </div>
       </div>

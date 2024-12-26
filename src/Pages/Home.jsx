@@ -14,8 +14,9 @@ import MetaHelmet from "../Components/MetaData";
 import AboutSection from "../Components/AboutSection";
 import CoreValues from "../Components/CoreValues";
 import Specialities from "../Components/Specialities";
+import Footer from "../Components/Footer";
 
-const Home = () => {
+const Home = ({footer_info}) => {
   const [data, setData] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -334,7 +335,10 @@ const Home = () => {
             </div>
           </div>
         </section>
+
+        
       )}
+    {footer_info &&(<Footer data={footer_info?.site_info} menu={footer_info?.menus} />)  }
     </div>
   );
 };
