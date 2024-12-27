@@ -94,7 +94,7 @@ const Footer = ({ data, menu ,address}) => {
               href={`mailto:${address ? address.email_id : data?.email_id}`}
               className="text-blue-500 hover:underline"
             >
-              {data?.email_id}
+              {address ? address.email_id : data?.email_id}
             </a>{" "}
             <br />
             <span className="font-bold">Phone:</span> {address ? address.phone_number : data?.phone_number}
