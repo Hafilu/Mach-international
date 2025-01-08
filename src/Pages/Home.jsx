@@ -49,7 +49,7 @@ const Home = ({footer_info}) => {
     arrows: false,
     autoplay: true,
     infinite: true,
-    speed: 600,
+    speed: 1500,
     autoplaySpeed: 3000,
     pauseOnHover: false,
     swipe: false,

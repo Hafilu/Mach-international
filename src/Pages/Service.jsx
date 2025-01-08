@@ -14,7 +14,7 @@ import Specialities from "../Components/Specialities";
 import CoreValues from "../Components/CoreValues";
 import Footer from "../Components/Footer";
 
-const Services = ({footer_info}) => {
+const Services = ({ footer_info }) => {
   const { serviceId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -28,7 +28,7 @@ const Services = ({footer_info}) => {
       return data?.service?.sub_services?.find((item) => item.title === id);
     });
   };
- 
+
   const closeModal = () => {
     setIsTransitioning(false);
     setTimeout(() => setIsModalOpen(false), 300);
@@ -88,7 +88,7 @@ const Services = ({footer_info}) => {
 
       {data?.aboutUs?.description && (
         <section className="bg-gray-100 py-24">
-          <AboutSection data={data} pageType={'service'} />
+          <AboutSection data={data} pageType={"service"} />
         </section>
       )}
 
@@ -115,14 +115,14 @@ const Services = ({footer_info}) => {
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
             {data.service.sub_services.map((service, index) => (
               <div key={index}>
-                <div className="relative  ">
+                <div className="relative overflow-hidden group">
                   <img
                     src={service.thumbnail_image_url}
                     alt=""
-                    className="w-full h-[380px] object-cover"
+                    className="w-full h-[380px] object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                   />
 
-                  <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[380px] p-6 font-playfair ">
+                  <div className="absolute flex flex-col justify-between right-0 top-0 bg-[#FFFFFF] bg-opacity-85 lg:w-[55%] w-[70%] h-[380px] p-6 font-playfair">
                     <div>
                       <h3 className="mb-6 text-[20px]">{service.title}</h3>
                       <div className="text-lg text-gray-700">
@@ -131,12 +131,12 @@ const Services = ({footer_info}) => {
                             __html: service.short_description,
                           }}
                         />
-                      </div>{" "}
+                      </div>
                     </div>
 
                     <div className="my-3">
                       <button onClick={() => openModal(service.title)}>
-                        <span className="border-black border py-2 px-5 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba]  active:opacity-70">
+                        <span className="border-black border py-2 px-5 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out transform hover:bg-[#104cba] hover:text-white hover:border-[#104cba] active:opacity-70">
                           READ MORE
                         </span>
                       </button>
@@ -158,7 +158,7 @@ const Services = ({footer_info}) => {
       {data?.service?.projects?.length > 0 && (
         <section className="w-[85%] mx-auto py-24 font-playfair">
           <p className="mb-12 md:w-[50%] mx-auto  text-4xl text-center font-bold font-playfair">
-           List Of Projects Completed
+            List Of Projects Completed
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6">
             {data.service.projects.map((project, index) => (
@@ -169,8 +169,8 @@ const Services = ({footer_info}) => {
       )}
 
       {data?.corevalueContent && (
-        <section className="pb-24 bg-gray-100">
-          <CoreValues data={data} pageType={'service'} />
+        <section className="pb-24 mt-20 bg-gray-100">
+          <CoreValues data={data} pageType={"service"} />
         </section>
       )}
 
@@ -207,8 +207,6 @@ const Services = ({footer_info}) => {
           />
         </section>
       )}
-
-      
 
       {isModalOpen && (
         <div
@@ -247,7 +245,13 @@ const Services = ({footer_info}) => {
           </div>
         </div>
       )}
-      {footer_info &&(<Footer data={ footer_info?.site_info} menu={footer_info?.menus} address={data?.service_address} />)}
+      {footer_info && (
+        <Footer
+          data={footer_info?.site_info}
+          menu={footer_info?.menus}
+          address={data?.service_address}
+        />
+      )}
     </div>
   );
 };
