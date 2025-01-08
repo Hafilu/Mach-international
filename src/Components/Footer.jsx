@@ -7,8 +7,7 @@ import logo from "../assets/logo.png";
 import footerbg from "../assets/footerbg.png";
 import { HashLink as NavLink } from "react-router-hash-link";
 
-const Footer = ({ data, menu ,address}) => {
- 
+const Footer = ({ data, menu, address, pageType }) => {
   const BaseLinks = [
     { name: "HOME", link: "/" },
     { name: "GROUP", link: "/#about-us" },
@@ -25,7 +24,11 @@ const Footer = ({ data, menu ,address}) => {
   return (
     <footer className="relative  text-black">
       {/* Top Section */}
-      <div className="w-[85%]  mx-auto grid grid-cols-1 md:justify-items-center md:grid-cols-3 gap-8   pt-12 pb-8">
+      <div
+        className={`w-[85%]  mx-auto grid grid-cols-1 md:justify-items-center md:grid-cols-3 ${
+          pageType ? "lg:grid-cols-3" : "lg:grid-cols-4"
+        }  gap-8   pt-12 pb-8`}
+      >
         {/* Logo and Social Media */}
         <div>
           <img
@@ -85,21 +88,45 @@ const Footer = ({ data, menu ,address}) => {
         </div>
 
         {/* Address */}
-        <div>
-          <h3 className="text-xl font-playfair font-bold mb-4">Contact Us</h3>
-          <p className="text-lg font-figtree">
-            { address ? address.address : data?.address} <br />
-            <span className="font-bold">Mail:</span>{" "}
-            <a
-              href={`mailto:${address ? address.email_id : data?.email_id}`}
-              className="text-blue-500 hover:underline"
-            >
-              {address ? address.email_id : data?.email_id}
-            </a>{" "}
-            <br />
-            <span className="font-bold">Phone:</span> {address ? address.phone_number : data?.phone_number}
-          </p>
-        </div>
+
+        {pageType ? (
+          <div>
+            <h3 className="text-xl font-playfair font-bold mb-4">Contact Us</h3>
+            <p className="text-lg font-figtree">
+              {address ? address.address : data?.address} <br />
+              <span className="font-bold">Mail:</span>{" "}
+              <a
+                href={`mailto:${address ? address.email_id : data?.email_id}`}
+                className="text-blue-500 hover:underline"
+              >
+                {address ? address.email_id : data?.email_id}
+              </a>{" "}
+              <br />
+              <span className="font-bold">Phone:</span>{" "}
+              {address ? address.phone_number : data?.phone_number}
+            </p>
+          </div>
+        ) : (
+          menu?.map((item) => (
+            <div>
+              <h3 className="text-xl font-playfair font-bold mb-4">
+                {item.title}
+              </h3>
+              <p className="text-lg font-figtree">
+                {item.address} <br />
+                <span className="font-bold">Mail:</span>{" "}
+                <a
+                  href={`mailto:${item.email_id}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  {item.email_id}
+                </a>{" "}
+                <br />
+                <span className="font-bold">Phone:</span> {item.phone_number}
+              </p>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Bottom Section */}

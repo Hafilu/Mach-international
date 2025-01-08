@@ -250,6 +250,7 @@ const Services = ({ footer_info }) => {
           data={footer_info?.site_info}
           menu={footer_info?.menus}
           address={data?.service_address}
+          pageType={"service"}
         />
       )}
     </div>
