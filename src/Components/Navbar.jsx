@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import whitelogo from "../assets/white-logo.png";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { HashLink as NavLink } from "react-router-hash-link";
-const Navbar = ({ menu ,site_info}) => {
+const Navbar = ({ menu, site_info }) => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -43,11 +43,17 @@ const Navbar = ({ menu ,site_info}) => {
       <div className="md:flex items-center justify-between py-2 w-full md:w-[85%] mx-auto px-6 md:px-0">
         {/* Logo Section */}
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
-          <img
-            src={ isScrolled ? site_info.footer_logo_url :site_info.header_logo_url }
-            alt="logo"
-            className="w-[200px] h-[70px] object-contain"
-          />
+          <NavLink to={"/"}>
+            <img
+              src={
+                isScrolled
+                  ? site_info.footer_logo_url
+                  : site_info.header_logo_url
+              }
+              alt="logo"
+              className="w-[200px] h-[70px] object-contain"
+            />
+          </NavLink>
         </div>
         {/* Menu Icon */}
         <div
