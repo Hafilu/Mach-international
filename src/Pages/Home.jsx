@@ -290,54 +290,7 @@ const Home = ({footer_info}) => {
           <AddressCard addresses={data.branches} />
         </section>
       )}
-      {data?.contactUs && (
-        <section>
-          <div className="relative w-full h-[450px]">
-            {/* Embedded Google Map */}
-            <iframe
-              src={data.contactUs.map}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute top-0 left-0 w-full h-full"
-            ></iframe>
-
-            {/* Address Card */}
-            <div className="absolute md:top-4 md:right-4 bottom-3 h-min bg-white p-6 rounded-lg shadow-lg max-w-sm">
-              <h2 className="text-2xl font-playfair font-bold mb-2">
-                Head Office
-              </h2>
-              <div className="font-figtree text-gray-800">
-                <p>{data.contactUs.head_office_title}</p>
-                <p>{data.contactUs.head_office_address}</p>
-
-                <p>
-                  <span className="font-bold">Ph:</span>{" "}
-                  {data.contactUs.head_office_phone}
-                </p>
-                <p>
-                  <span className="font-bold">Mob:</span>{" "}
-                  {data.contactUs.head_office_mobile}
-                </p>
-                <p>
-                  <span className="font-bold">Mail:</span>{" "}
-                  <a
-                    href={`mailto:${data.contactUs.head_office_email_id}`}
-                    className="text-blue-500 hover:underline"
-                  >
-                    {data.contactUs.head_office_email_id}
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        
-      )}
+     
     {footer_info &&(<Footer data={footer_info?.site_info} menu={footer_info?.menus} />)  }
     </div>
   );

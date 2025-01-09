@@ -73,7 +73,7 @@ const Services = ({ footer_info }) => {
           <div className="absolute inset-0 flex flex-col justify-center items-start flex-1  w-[85%] mx-auto text-white  ">
             <div className="text-left lg:w-[70%] w-[90%]">
               <p className="text-2xl   capitalize font-figtree">
-                What Makes Mach International
+                {data.banner.banner_short_title}
               </p>
               <h1 className="text-4xl md:text-7xl capitalize mb-[30px] mt-[20px] font-bold font-playfair ">
                 {data.banner.banner_title}
@@ -244,6 +244,49 @@ const Services = ({ footer_info }) => {
             </div>
           </div>
         </div>
+      )}
+
+      {data?.service?.google_map && (
+        <section>
+          <div className="relative w-full h-[450px]">
+            {/* Embedded Google Map */}
+            <iframe
+              src={data.service.google_map}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
+
+            {/* Address Card */}
+            <div className="absolute md:top-4 md:right-4 bottom-3 h-min bg-white p-6 rounded-lg shadow-lg max-w-sm">
+              <h2 className="text-2xl font-playfair font-bold mb-2">
+                {data.service.title}
+              </h2>
+              <div className="font-figtree text-gray-800">
+                <p>{data.service.address}</p>
+
+                <p>
+                  <span className="font-bold">Ph:</span>{" "}
+                  {data.service.phone_number}
+                </p>
+
+                <p>
+                  <span className="font-bold">Mail:</span>{" "}
+                  <a
+                    href={`mailto:${data.service.email_id}`}
+                    className="text-blue-500 hover:underline"
+                  >
+                    {data.service.email_id}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       )}
       {footer_info && (
         <Footer
