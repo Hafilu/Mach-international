@@ -33,7 +33,12 @@ const Navbar = ({ menu, site_info }) => {
   const contactLink =[ { name: "CAREERS", link: "/careers" },{ name: "CONTACT US", link: "/#contact-us" }];
 
   const Links = [...BaseLinks, ...serviceLinks, ...contactLink];
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scrolling
+    });
+  };
   return (
     <div
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
@@ -79,6 +84,7 @@ const Navbar = ({ menu, site_info }) => {
               <NavLink
                 smooth
                 to={link.link} // e.g., "/about#section-id"
+                onClick={scrollToTop}
                 className={`font-playfair hover:text-[#104cba] duration-500 uppercase ${
                   isScrolled ? "text-black" : "lg:text-white"
                 }`}

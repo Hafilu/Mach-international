@@ -17,10 +17,15 @@ const Footer = ({ data, menu, address, pageType }) => {
     name: item.title,
     link: `/services/${item.short_url}`,
   }));
-  const contactLink = { name: "CONTACT US", link: "/#contact-us" };
+  const contactLink =[ { name: "CAREERS", link: "/careers" },{ name: "CONTACT US", link: "/#contact-us" }];
 
-  const Links = [...BaseLinks, ...serviceLinks, contactLink];
-
+  const Links = [...BaseLinks, ...serviceLinks, ...contactLink];
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scrolling
+    });
+  };
   return (
     <footer className="relative  text-black">
       {/* Top Section */}
@@ -78,6 +83,7 @@ const Footer = ({ data, menu, address, pageType }) => {
                 <NavLink
                   smooth
                   to={link.link} // e.g., "/about#section-id"
+                  onClick={scrollToTop}
                   className="uppercase"
                 >
                   {link.name}

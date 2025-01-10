@@ -15,11 +15,14 @@ import AboutSection from "../Components/AboutSection";
 import CoreValues from "../Components/CoreValues";
 import Specialities from "../Components/Specialities";
 import Footer from "../Components/Footer";
+import { useLocation } from "react-router-dom";
 
 const Home = ({footer_info}) => {
   const [data, setData] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
