@@ -8,7 +8,7 @@ import { sendCareerData } from "../Api/Api";
 import LazyLoad from "react-lazyload";
 
 const Career = ({ footer_info, banner }) => {
-    const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Name is required")
@@ -38,7 +38,10 @@ const Career = ({ footer_info, banner }) => {
       ),
   });
 
-  const handleSubmit = async (values, { setSubmitting, resetForm, setFieldValue}) => {
+  const handleSubmit = async (
+    values,
+    { setSubmitting, resetForm, setFieldValue }
+  ) => {
     try {
       const formData = new FormData();
       formData.append("name", values.name);
@@ -92,125 +95,129 @@ const Career = ({ footer_info, banner }) => {
         </div>
       )}
 
-      <div className="w-[85%] mx-auto max-w-screen-xl py-24">
-        <h1 className="text-2xl uppercase mb-6 font-bold  ">Job Application</h1>
-        <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            coverLetter: "",
-            resume: null,
-          }}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ setFieldValue , isSubmitting}) => (
-            <Form className="space-y-4">
-              {/* Name Field */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block   font-medium text-gray-700"
-                >
-                  Name
-                </label>
-                <Field
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Enter your name..."
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <ErrorMessage
-                  name="name"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+      <div className="py-24">
+        <div className="w-[85%] mx-auto max-w-screen-xl border-[1px] border-solid p-10 bg-white rounded-lg shadow-md">
+          <h1 className="text-2xl uppercase mb-6 font-bold  ">
+            Job Application
+          </h1>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              coverLetter: "",
+              resume: null,
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ setFieldValue, isSubmitting }) => (
+              <Form className="space-y-4">
+                {/* Name Field */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block   font-medium text-gray-700"
+                  >
+                    Name
+                  </label>
+                  <Field
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Enter your name..."
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
 
-              {/* Email Field */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block   font-medium text-gray-700"
-                >
-                  Email
-                </label>
-                <Field
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your email..."
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+                {/* Email Field */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block   font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <Field
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your email..."
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
 
-              {/* Cover Letter Field */}
-              <div>
-                <label
-                  htmlFor="coverLetter"
-                  className="block  font-medium text-gray-700"
-                >
-                  Cover Letter
-                </label>
-                <Field
-                  as="textarea"
-                  name="coverLetter"
-                  id="coverLetter"
-                  rows="5"
-                  placeholder="Enter your cover letter..."
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <ErrorMessage
-                  name="coverLetter"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+                {/* Cover Letter Field */}
+                <div>
+                  <label
+                    htmlFor="coverLetter"
+                    className="block  font-medium text-gray-700"
+                  >
+                    Cover Letter
+                  </label>
+                  <Field
+                    as="textarea"
+                    name="coverLetter"
+                    id="coverLetter"
+                    rows="5"
+                    placeholder="Enter your cover letter..."
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <ErrorMessage
+                    name="coverLetter"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
 
-              {/* Resume Upload */}
-              <div>
-                <label
-                  htmlFor="resume"
-                  className="block  font-medium text-gray-700"
-                >
-                  Resume
-                </label>
-                <input
-                  type="file"
-                  id="resume"
-                  name="resume"
-                  ref={fileInputRef}
-                  className="mt-1 block file:cursor-pointer w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  onChange={(event) =>
-                    setFieldValue("resume", event.currentTarget.files[0])
-                  }
-                />
-                <ErrorMessage
-                  name="resume"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+                {/* Resume Upload */}
+                <div>
+                  <label
+                    htmlFor="resume"
+                    className="block  font-medium text-gray-700"
+                  >
+                    Resume
+                  </label>
+                  <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    ref={fileInputRef}
+                    className="mt-1 block file:cursor-pointer w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    onChange={(event) =>
+                      setFieldValue("resume", event.currentTarget.files[0])
+                    }
+                  />
+                  <ErrorMessage
+                    name="resume"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
 
-              {/* Submit Button */}
-              <div className="text-end">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-max py-2 px-4     bg-[#104cba] text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
+                {/* Submit Button */}
+                <div className="text-end">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-max py-2 px-4     bg-[#104cba] text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
       {footer_info && (
         <Footer data={footer_info?.site_info} menu={footer_info?.menus} />

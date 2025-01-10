@@ -30,7 +30,7 @@ const Navbar = ({ menu, site_info }) => {
     name: item.title,
     link: `/services/${item.short_url}`,
   }));
-  const contactLink =[ { name: "CONTACT US", link: "/#contact-us" },{ name: "CAREERS", link: "/careers" }];
+  const contactLink =[ { name: "CAREERS", link: "/careers" },{ name: "CONTACT US", link: "/#contact-us" }];
 
   const Links = [...BaseLinks, ...serviceLinks, ...contactLink];
 
