@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import { fetchSiteData } from "./Api/Api";
 import ScrollToTop from "./Components/ScrollToTop";
+import Career from "./Pages/Career";
 
 function App() {
   const [data, setData] = useState(null);
@@ -31,6 +32,7 @@ function App() {
       {/*Implementing Routes for respective Path */}
       <Routes>
         <Route path="/" element={<Home footer_info={data} />} />
+        <Route path="/careers" element={<Career footer_info={data} banner={data?.banner}/>} />
         <Route
           path="/services/:serviceId"
           element={<Services footer_info={data} />}

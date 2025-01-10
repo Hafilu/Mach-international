@@ -43,3 +43,19 @@ export const fetchServiceData = async (url) => {
     }
   };
   
+
+
+  export const sendCareerData = async (value) => {
+    console.log("send value",value);
+    try {
+      const response = await axios.post(`${base_url}career-enquiry` , value,{
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data.message;
+    } catch (error) {
+      console.error("Error sending form data:", error);
+      throw error;
+    }
+  };
