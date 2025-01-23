@@ -215,7 +215,7 @@ const Services = ({ footer_info }) => {
           }`}
         >
           <div
-            className={`relative bg-white px-10 pb-10 pt-6 rounded-lg max-w-2xl md:w-full w-[80%] max-h-[80vh] overflow-y-auto transition-transform duration-300 ${
+            className={`relative bg-white md:px-10 px-6 pb-10 pt-6 rounded-lg max-w-2xl md:w-full w-[80%] max-h-[80vh] overflow-y-auto transition-transform duration-300 ${
               isTransitioning ? "scale-100" : "scale-50"
             }`}
           >
@@ -234,7 +234,7 @@ const Services = ({ footer_info }) => {
                 alt=""
                 className="h-[200px] w-full rounded-lg object-cover"
               />
-              <div className="text-lg text-gray-800 mt-4 font-playfair">
+              <div className="text-lg text-start text-gray-800 mt-6 font-playfair">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: modalContent.description,

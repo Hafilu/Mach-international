@@ -95,8 +95,8 @@ const Career = ({ footer_info, banner }) => {
         </div>
       )}
 
-      <div className="py-24">
-        <div className="w-[85%] mx-auto max-w-screen-xl border-[1px] border-solid p-10 bg-white rounded-lg shadow-md">
+      <div className="md:py-24 py-16">
+        <div className="w-[85%] mx-auto max-w-screen-xl border-[1px] border-solid md:p-10 p-6 bg-white rounded-lg shadow-md">
           <h1 className="text-2xl uppercase mb-6 font-bold  ">
             Job Application
           </h1>

@@ -1,5 +1,5 @@
 import axios from "axios";
-const base_url = "https://pransfoods.com/mach-intl/admin/api/";
+const base_url = "http://machintl.com/admin/api/";
 
 export const fetchHomeData = async () => {
   try {
